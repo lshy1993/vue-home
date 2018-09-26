@@ -1,0 +1,243 @@
+#app{
+    .naviTop {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        min-height: 50px;
+        z-index: 1010;
+        //box-shadow: 0 1px 5px rgba(0,0,0,.2), 0 2px 2px rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.12);
+        transition: background-color .2s ease-in-out 0s;
+
+        &.normalbg {
+            background: #fed;
+            .naviButton:hover {
+                background: #3cf;
+            }
+            
+        }
+        &.urabg {
+            color: #f4f3f9;
+            background-color: #7266ba;
+            a {
+                color: #f4f3f9;
+            }
+
+            .naviButton:hover {
+                background: #5f50b0;
+            }
+        }
+
+        .naviTitle {
+            position: fixed;
+            width: 200px;
+            color: white;
+            line-height: 50px;
+            font-size: 20px;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        .topContent {
+            position: relative;
+            height: 50px;
+            width: auto;
+            line-height: 20px;
+            padding: 0 15px;
+            margin-left: 200px;
+
+            .topFunction {
+                float: left;
+                width: auto;
+                line-height: 50px;
+            }
+        }
+
+        .naviButtonList {
+            float: right;
+            position: relative;
+            line-height: 50px;
+            //margin: 0 10px;
+
+            .naviButton {
+                display: block;
+                line-height: 20px;
+                padding:15px;
+                
+                .naviImg{
+                    position: absolute;
+                    top: 0;
+                }
+
+                .naviTxt{
+                    margin: auto;
+                    line-height: 20px;
+                }
+            }
+            // .naviButton:hover {
+            //     background: #3CF;
+            // }
+            // .router-link-active {
+            //     background: #3CF;
+            // }
+            
+        }
+
+        #optionBox {
+            position: absolute;
+            right: 10px;
+        }
+        
+    }
+
+    .naviSide {
+        position: fixed;
+        width: 200px;
+        height: 100%;
+        overflow: hidden;
+        transition: background-color .2s ease-in-out 0s;
+
+            
+        &.normalbg {
+            background: pink;
+            color: black;
+
+            .naviList:hover{
+                background: #3CF;
+            }
+
+            .naviSquare:hover {
+                background: #3CF;
+            }
+        }
+        &.urabg {
+            background-color: #3a3f51;
+            color: #a6a8b1;
+
+            a { color: #a6a8b1;}
+            
+            .naviList:hover {
+                background: #2e3243;
+            }
+            .naviSquare:hover {
+                background: #2e3243;
+            }
+        }
+
+        a.router-link-active.router-link-exact-active {
+            color: white;
+        }
+
+        .naviWrap {
+            position: fixed;
+            top: 50px;
+            bottom: 0;
+            left: 0;
+            z-index: 1000;
+            width: 199px;
+            overflow: hidden;
+
+            .naviContent {
+                position: relative;
+                overflow-x: hidden;
+                overflow-y: scroll;
+                width: 400px;
+                height: 100%;
+            }
+
+            .line {
+                width: 100%;
+                height: 1px;
+                margin: 10px 0;
+                overflow: hidden;
+                //font-size: 0;
+                background-color: #2e3344;
+            }
+
+            .userHead {
+                position: relative;
+                overflow-x: hidden;
+                width: 200px;
+                padding-top: 15px;
+                text-align: center;
+
+                .avatar {
+                    position: relative;
+                    overflow: hidden;
+                    display: inline-block;
+                    white-space: nowrap;
+
+                    img {
+                        width: 100%;
+                        border-radius: 500px;
+                    }
+                }
+                .avatar-large {
+                    width: 130px;
+                }
+                .avatar-normal {
+                    width: 96px;
+                }
+                .motto {
+                    font-size: 12px;
+                    margin-top: 10px;
+                }
+            }
+
+            .userBottom {                          
+                padding-bottom: 100px;
+            }
+            
+            .naviList {
+                position: relative;
+                display: block;
+                padding: 10px 20px;
+                font-weight: 400;
+                text-transform: none;
+                transition: background-color .2s ease-in-out 0s;
+            }
+
+            .naviSquareBox {
+                padding: 0 10px;
+
+                .naviSquare {
+                    width: 50px;
+                    height: 50px;
+                    margin: 5px;
+                    background: white;
+                }
+
+            }
+            
+            .hintText {
+                position: relative;
+                font-size: 12px;
+                margin-bottom: 10px;
+                padding-right: 15px;
+                padding-left: 15px;
+            }
+        }
+
+        
+    }
+
+    #mainBG {
+        background-image: url(/static/images/still_unit_107731.png);
+        background-size: cover;
+        background-position: right bottom;
+        background-repeat: no-repeat;
+        position: fixed;
+        z-index: -1;
+        top: 50px;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        transition: all .3s;
+    }
+
+    .mainContent {
+        //margin-top: 50px;
+        margin-left: 200px;
+        // margin-right: 15px;
+        // margin-bottom: 10px;
+    }
+}
