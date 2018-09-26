@@ -1,6 +1,10 @@
 <template>
 <div>
     <div class="inset-container">
+        <header class="pagehead">
+            <h1>最新消息</h1>
+            <small></small>
+        </header>
         <article :class="['section','whitebox',key==0?'header':'']" v-for="(ele,key) in newsList" :key="key">
             <h3>{{ ele.title }}+{{ key }}</h3>
             <aside>

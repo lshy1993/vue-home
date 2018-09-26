@@ -118,25 +118,5 @@ export default {
 </script>
 
 <style lang="scss">
-    .pagehead {
-        display: inline-block;
-        margin-top: 30px;
-        color: white;
-        background: transparent;
-        width: 100%;
-        text-align: center;
-        text-shadow: 0 0 3px #000;
 
-        h1{
-            font-size: 32px;
-        }
-
-        small{
-            font-size: 14px;
-        }
-        
-    }
-    .tags {
-        display: inline-block;
-    }
 </style>

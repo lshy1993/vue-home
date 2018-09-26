@@ -89,5 +89,26 @@ export default {
     height: auto;
     //min-height: 100%;
     padding-top: 50px;
+    
+    #mainBG {
+        background-image: url(/static/images/still_unit_107731.png);
+        background-size: cover;
+        background-position: right bottom;
+        background-repeat: no-repeat;
+        position: fixed;
+        z-index: -1;
+        top: 50px;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        transition: all .3s;
+    }
+
+    .mainContent {
+        //margin-top: 50px;
+        margin-left: 200px;
+        // margin-right: 15px;
+        // margin-bottom: 10px;
+    }
 }
 </style>

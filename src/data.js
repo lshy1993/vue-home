@@ -135,7 +135,6 @@ var gameIdList = [
     },
 ]
 
-
 var newsList = [
     {
         title: '开放下载',
@@ -154,6 +153,19 @@ var newsList = [
         sub: 'CCCCCC',
         time: '2014年8月15日',
         innerhtml: '<li>可以<a href="./project/01/download.html">下载</a>了！！！——才怪</li>'
+    }
+]
+
+var comentList = [
+    {
+        user: 'aaa',
+        text: 'bbbbbbbbbb',
+        time: '2018-12-24'
+    },
+    {
+        user: 'aaa',
+        text: 'bbbbbbbbbb',
+        time: '2018-12-24'
     }
 ]
 
@@ -176,5 +188,6 @@ export default{
     gameIdList,
     newsList,
     stateCheckList,
-    uraSite
+    uraSite,
+    comentList
 }
