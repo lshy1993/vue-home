@@ -22,6 +22,7 @@
                 <div>事件进度</div>
                 <div>剧本量</div>
             </ul>
+            <page-top/>
         </article>
         <article class="section whitebox">
             <h2>时间轮回的终点R
@@ -41,6 +42,7 @@
                 <div>剧本进度</div>
                 <div>剧本量</div>
             </ul>
+            <page-top/>
         </article>
         <article class="section whitebox">
             <h2>科学与魔法
@@ -60,6 +62,7 @@
                 <div>剧本进度</div>
                 <div>剧本量</div>
             </ul>
+            <page-top/>
         </article>
         <article class="section whitebox">
             <h2>shell+爬虫统计彩票
@@ -78,6 +81,7 @@
                 <div>前端</div>
                 <div>后端</div>
             </ul>
+            <page-top/>
         </article>
         <article class="section whitebox">
             <h2>群友代购页面
@@ -95,14 +99,16 @@
             <ul>
                 <div>前端</div>
                 <div>后端</div>
-            </ul>
+            </ul>            
+            <page-top/>
         </article>
     </div>
 </div>
 </template>
 
 <script>
-import Tag from './Tag.vue';
+import Tag from '../components/Tag.vue';
+import PageTop from '../components/PageTop.vue';
 
 export default {
     name: 'Plan',
@@ -112,7 +118,8 @@ export default {
         }
     },
     components:{
-        Tag
+        Tag,
+        PageTop
     }
 }
 </script>

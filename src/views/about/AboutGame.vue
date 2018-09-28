@@ -36,7 +36,7 @@
         </ul>
         <ul class="identities grid-50 clearfix">
             <li class="identity" v-for="(ele,key) in gameList2" :key="key">
-                <a href="">
+                <a>
                     <i aria-hidden="true" class="fab fa-steam-symbol"></i>
                     <span class="where">{{ele.where}}</span>
                     <span class="link">{{ele.link}} {{ele.id}}</span>

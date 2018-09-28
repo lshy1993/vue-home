@@ -2,7 +2,7 @@
 <div>
     <div class="inset-container">
         <!--正文框架-->
-        <article id="aboutsite" class="aboutMe header">
+        <article id="aboutsite" class="whitebox header">
             <h3>关于：掀桌&nbsp;(╯‵□′)╯︵┻━┻&nbsp;游戏</h3>
             <aside>
                 <time>2014年6月22日&nbsp;</time>
@@ -34,11 +34,9 @@
                 <li>如果有一天，有人想将我们的游戏动画化，</li>
                 <li>尽管，现在的我们非常的渺小，但我们相信，那一天总会到来！</li>
             </ul>
-            <div class="pageTopLink">
-                <a href="" title="PAGETOP">PAGETOP</a>
-            </div>
+            <page-top/>
         </article>
-        <article id="aboutright" class="aboutMe">
+        <article id="aboutright" class="whitebox">
             <h3>版权说明</h3>
             <aside>
                 <time>2014年6月22日&nbsp;</time>
@@ -66,21 +64,29 @@
                 <li>欢迎对本站游戏内容进行二次创作，若有二次创作作品请告知本站。</li>
                 <li>素材作品的所有权及版权归其原作者所有。</li>
             </ul>
-            <div class="pageTopLink">
-                <a href="" title="PAGETOP">PAGETOP</a>
-            </div>
+            <page-top />
         </article>
     </div>
 </div>
 </template>
 
 <script>
+import PageTop from '../components/PageTop.vue';
+
 export default {
     name: 'SiteIntro',
     data(){
         return {
 
         }
+    },
+    methods:{
+        top: function(){
+            window.scroll(0,0);
+        }
+    },
+    components: {
+        PageTop
     }
 }
 </script>

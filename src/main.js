@@ -15,20 +15,20 @@ Vue.prototype.Common = dd;
 
 //组件注册
 import App from './App.vue';
-import Index from './components/Index.vue';
-import About from './components/about.vue';
-import SiteIntro from './components/SiteIntro.vue';
-import Member from './components/Member.vue';
-import Download from './components/Download.vue';
-import Danmaku from './components/Danmaku.vue';
+import Index from './views/Index.vue';
+import About from './views/about.vue';
+import SiteIntro from './views/SiteIntro.vue';
+import Member from './views/Member.vue';
+import Download from './views/Download.vue';
+import Danmaku from './views/Danmaku.vue';
 
-import News from './components/News.vue';
-import Works from './components/Works.vue';
-import Plan from './components/Plan.vue';
-import Goods from './components/Goods.vue';
-import FriendLink from './components/Link.vue';
+import News from './views/News.vue';
+import Works from './views/Works.vue';
+import Plan from './views/Plan.vue';
+import Goods from './views/Goods.vue';
+import FriendLink from './views/Link.vue';
 
-import Status from './components/Status.vue';
+import Status from './views/Status.vue';
 
 
 //路由信息

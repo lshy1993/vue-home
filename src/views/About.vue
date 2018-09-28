@@ -18,9 +18,9 @@
 </template>
 
 <script>
-import AboutHeader from './AboutHeader.vue'
-import AboutSocial from './AboutSocial.vue'
-import AboutGame from './AboutGame.vue'
+import AboutHeader from './about/AboutHeader.vue'
+import AboutSocial from './about/AboutSocial.vue'
+import AboutGame from './about/AboutGame.vue'
 
 import '../style/about.scss';
 

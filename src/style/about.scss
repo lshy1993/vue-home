@@ -57,9 +57,16 @@
     vertical-align: bottom;
     transition-duration: .5s;
     background: #55474a;
+
+    &:hover {
+        background: rgba(85,71,74,.7);
+    }
 }
-.label:hover {
-    background: rgba(85,71,74,.7);
+
+
+.identities {
+    margin: 0;
+    padding: 0;
 }
 
 .identity {
@@ -72,6 +79,10 @@
     width: 90%;
     transition-duration: .3s;
 
+    &:hover {
+        background-color: rgba(0,0,0,.055);
+    }
+
     .link{
         bottom: .5em;
         color: #6f656d;
@@ -80,12 +91,4 @@
         right: .45em;
         text-align: right;
     }
-}
-.identity:hover {
-    background-color: rgba(0,0,0,.055);
-}
-
-.identities {
-    margin: 0;
-    padding: 0;
 }
