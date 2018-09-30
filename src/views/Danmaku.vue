@@ -1,17 +1,20 @@
 <template>
 <div>
     <div class="inset-container">
-        <h1>弹幕留言</h1>
+        <header class="pagehead">
+            <h1>弹幕留言</h1>
+            <small>前方高能</small>
+        </header>
         <ol>
-            <li class="section comentbox" v-for="(ele,key) in comentList" :key="key">
+            <li class="section comentbox" v-for="(ele,key) in commentList" :key="key">
                 <a class="usericon"><img class="icon48" src=""></a>
                     <div class="inline">
                         <span>{{ ele.user }}</span>
-                        <time>{{ ele.time }}</time>
+                        <time>{{ changeTime(ele.time) }}</time>
                     </div>
                     <div class="inline">
                         {{ ele.text }}
-                        <small>OS</small>
+                        <small>{{ ele.OS }}</small>
                     </div>
             </li>
         </ol>
@@ -20,11 +23,29 @@
 </template>
 
 <script>
+import moment from 'moment';
 export default {
     name: 'Danmaku',
     data(){
         return {
-            comentList: this.Common.comentList
+            commentList: []
+        }
+    },
+    mounted(){
+        this.getComments();
+    },
+    created(){
+        this.getComments();
+        console.log(window.navigator);
+    },
+    methods: {
+        getComments: function(){
+            this.$http.get("//localhost:3000/main/comment").then((response)=>{
+                this.commentList = response.data;
+            });
+        },
+        changeTime: function(tt){
+            return this.$moment(tt).format('YYYY-MM-DD hh:mm');
         }
     }
 }

@@ -6,12 +6,19 @@ import axios from 'axios'
 import VueAxios from 'vue-axios'
 Vue.use(VueAxios,axios);
 
+import moment from 'vue-moment';
+Vue.use(moment);
+
+//样式表
 import './style/common.scss';
 import './style/about.scss';
 import './style/old.scss';
 
-import dd from './data.js';
-Vue.prototype.Common = dd;
+//静态数据与方法
+import data from './data.js';
+Vue.prototype.Common = data;
+import func from './func.js';
+Vue.prototype.Func = func;
 
 //组件注册
 import App from './App.vue';

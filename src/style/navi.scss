@@ -53,6 +53,13 @@
                 float: left;
                 width: auto;
                 line-height: 50px;
+
+                .topFuncBtn {
+                    cursor: pointer;
+                    display: inline-block;
+                    padding-left: 10px;
+                    padding-right: 10px;
+                }
             }
         }
 
@@ -170,21 +177,27 @@
 
                 .avatar {
                     position: relative;
-                    overflow: hidden;
-                    display: inline-block;
+                    //overflow: hidden;
+                    height: 150px;
                     white-space: nowrap;
-
-                    img {
-                        width: 100%;
-                        border-radius: 500px;
-                    }
+                    //text-align: center;
+                    vertical-align: middle;
                 }
                 .avatar-large {
+                    display: block;
                     width: 130px;
+                    height: 130px;
+                    border: 2px solid #fff;
+                    border-radius: 500px;
+                    overflow: hidden;
+                    transition: all .5s ease-in-out;
+                    
+                    &:hover {
+                        width: 150px;
+                        height: 150px;
+                    }
                 }
-                .avatar-normal {
-                    width: 96px;
-                }
+
                 .motto {
                     font-size: 12px;
                     margin-top: 10px;

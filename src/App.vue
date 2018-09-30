@@ -4,11 +4,20 @@
         <router-link :to="'/'" class="naviTitle">(╯‵□′)╯︵┻━┻</router-link>
         <div class="topContent">
             <div class="topFunction">
-                <div class="clearfix">
-                    <input type="checkbox" v-model="uraSite" v-on:change="changeMode()" id="modeswitch">
-                    <!--label for="modeswitch">开发者模式</label-->
+                <div class="topFuncBtn clearfix">
+                    <label for="modeswitch">开发</label>
+                    <input style="display:none" type="checkbox" v-model="uraSite" id="modeswitch">
                 </div>
-                <a class="clearfix">隐藏边界</a>
+                <div class="clearfix" v-if="uraSite">
+                    <div class="topFuncBtn hidehover">背景图</div>
+                    <div class="thumbframe">
+                        <div :style="{'line-height':'20px'}">
+                            <small>下一张 倒计时：{{ countDown }}</small>
+                        </div>
+                        <img class="thumb" :style="{'backgroundImage':nextPath}" />
+                    </div>
+                </div>
+                <div class="topFuncBtn clearfix">隐藏边界</div>
             </div>
             <div class="naviButtonList clearfixbox">
                 <router-link class="naviButton clearfix" v-for="(ele,key) in naviBtn" :key="key" :to="ele.to">
@@ -24,8 +33,10 @@
         <div class="naviWrap">
             <div class="naviContent">
                 <div class="userHead">
-                    <div class="avatar avatar-large">
-                        <img src="static/images/head-r.jpg" />
+                    <div class="avatar">
+                        <span class="avatar-large">
+                            <img :src="[uraSite?'static/images/head-r.jpg':'static/images/head.jpg']" />
+                        </span>
                     </div>
                     <div class="motto">我永远喜欢くすはらゆい</div>
                 </div>
@@ -52,7 +63,7 @@
             </div>
         </div>
     </aside>
-    <div id="mainBG" />
+    <div id="mainBG" ref="mainbg"/>
     <router-view class="mainContent"></router-view>
 </div>
 </template>
@@ -68,16 +79,34 @@ export default {
             sideJump: this.Common.sideJump,
             sideList: this.Common.sideList,
             sideHide: true,
-            uraSite: this.Common.uraSite
+            uraSite: this.Common.uraSite,
+            nextPath: '',
+            countDown: 30,
+            timer: Object
         }
+    },
+    mounted(){
+        var self = this;
+        clearInterval(this.timer);
+        self.$refs.mainbg.style.backgroundImage = this.Func.ranBG();
+        self.nextPath = this.Func.ranBG();
+        this.timer = setInterval(()=>{
+            if(self.countDown == 0){
+                self.$refs.mainbg.style.backgroundImage = self.nextPath;
+                //重置时间与下一张图
+                self.countDown = 30;
+                self.nextPath = this.Func.ranBG();
+            }else{
+                self.countDown--;
+            }
+            
+        }, 1000);
     },
     beforeRouteEnter (to, from, next) {
         next();
     },
     methods:{
-        changeMode: function(){
-            
-        }
+
     }
 }
 </script>
@@ -91,7 +120,7 @@ export default {
     padding-top: 50px;
     
     #mainBG {
-        background-image: url(/static/images/still_unit_107731.png);
+        //background-image: url(/static/images/still_unit_107731.png);
         background-size: cover;
         background-position: right bottom;
         background-repeat: no-repeat;
@@ -101,8 +130,27 @@ export default {
         left: 0;
         right: 0;
         bottom: 0;
-        transition: all .3s;
+        transition: all 2s ease-in-out;
+        
     }
+
+        .thumb {
+            width: 320px;
+            height: 180px;
+            background-size: 320px 180px;
+        }
+
+    .hidehover + .thumbframe {
+        position: fixed;
+        text-align: center;
+        background: #2e3243;
+        transition: all .3s;
+        opacity: 0;
+    }
+    .hidehover:hover + .thumbframe {
+        opacity: 1;
+    }
+
 
     .mainContent {
         //margin-top: 50px;

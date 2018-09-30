@@ -17,7 +17,7 @@ export default {
             let self = this;
             self.timer = setInterval(function(){
                 let osTop = document.documentElement.scrollTop || document.body.scrollTop;
-                let ispeed = Math.floor(-osTop / 2);
+                let ispeed = Math.floor(-osTop / 5);
                 document.documentElement.scrollTop = document.body.scrollTop = osTop + ispeed;
                 self.isTop = true;
                 if (osTop === 0) {

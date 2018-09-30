@@ -156,24 +156,11 @@ var newsList = [
     }
 ]
 
-var comentList = [
-    {
-        user: 'aaa',
-        text: 'bbbbbbbbbb',
-        time: '2018-12-24'
-    },
-    {
-        user: 'aaa',
-        text: 'bbbbbbbbbb',
-        time: '2018-12-24'
-    }
-]
-
 var stateCheckList = [
     'MainSite',
     'Server',
     'Blog',
-    'API',
+    'MainAPI',
     'PcrWiki',
     'GalWiki'
 ]
@@ -189,5 +176,4 @@ export default{
     newsList,
     stateCheckList,
     uraSite,
-    comentList
 }
