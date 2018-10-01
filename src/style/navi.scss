@@ -50,7 +50,8 @@
             margin-left: 200px;
 
             .topFunction {
-                float: left;
+                //float: left;
+                display: inline-block;
                 width: auto;
                 line-height: 50px;
 
@@ -61,6 +62,20 @@
                     padding-right: 10px;
                 }
             }
+
+            .devBtnWarp {
+                display: inline-block;
+                overflow: hidden;
+                width: 600px;
+                transition: width .2s;
+
+                .devBtn {
+                    position: relative;
+                    display: inline-block;
+                    width: 600px;
+                }
+            }
+            
         }
 
         .naviButtonList {
@@ -84,13 +99,6 @@
                     line-height: 20px;
                 }
             }
-            // .naviButton:hover {
-            //     background: #3CF;
-            // }
-            // .router-link-active {
-            //     background: #3CF;
-            // }
-            
         }
 
         #optionBox {
@@ -107,7 +115,12 @@
         height: 100%;
         overflow: hidden;
         transition: background-color .2s ease-in-out 0s;
-        transition: width .2s;
+        transition: width .3s;
+        z-index: 1011;
+
+        &.wide{
+            width: 0px;
+        }
             
         &.normalbg {
             background: #f5f5f5;
@@ -139,18 +152,18 @@
             }
         }
 
-        // a.router-link-active.router-link-exact-active {
-        //     color: white;
-        // }
-
         .naviWrap {
             position: fixed;
             top: 50px;
             bottom: 0;
             left: 0;
-            z-index: 1000;
             width: 199px;
             overflow: hidden;
+            transition: width .3s;
+
+            &.wide {
+                width: 0;
+            }
 
             .naviContent {
                 position: relative;
@@ -173,30 +186,31 @@
                 position: relative;
                 overflow-x: hidden;
                 width: 200px;
-                padding-top: 15px;
+                padding-top: 10px;
                 text-align: center;
 
                 .avatar {
                     position: relative;
-                    //overflow: hidden;
+                    display: inline-block;
                     height: 150px;
-                    white-space: nowrap;
-                    //text-align: center;
-                    vertical-align: middle;
+                    
+                    span {
+                        margin-top: 10px;
+                        width: 130px;
+                        display: inline-block;
+                        white-space: nowrap;
+                        border-radius: 500px; 
+                        transition: all .5s ease-in-out;
+
+                        &:hover {
+                            transform: scale(1.15);
+                        }
+                    }
                 }
                 .avatar-large {
-                    display: block;
-                    width: 130px;
-                    height: 130px;
                     border: 2px solid #fff;
-                    border-radius: 500px;
-                    overflow: hidden;
-                    transition: all .5s ease-in-out;
-                    
-                    &:hover {
-                        width: 150px;
-                        height: 150px;
-                    }
+                    border-radius: 500px; 
+                    vertical-align: middle;
                 }
 
                 .motto {

@@ -7,20 +7,17 @@
 
 .width-toggle-enter-active, .width-toggle-leave-active {
     transition: width .5s;
-    //width: 200px;
 }
 .width-toggle-enter, .width-toggle-leave-to /* .fade-leave-active below version 2.1.8 */ {
-    width: 0;
+    width: 100px;
 }
-.width-toggle-leave, .width-toggle-enter-to {
-    //width: 200px;
+.width-toggle-leave, .width-toggle-enter-to /* .fade-leave-active below version 2.1.8 */ {
+    width: 0px;
 }
 
 .ml-toggle-enter-active, .ml-toggle-leave-active {
     transition: margin-left .5s;
-    //margin-left: 200px;
 }
 .ml-toggle-enter, .ml-toggle-leave-to /* .fade-leave-active below version 2.1.8 */ {
-    transition: margin-left .5s;
-    //margin-left: 0;
+    margin-left: 0;
 }

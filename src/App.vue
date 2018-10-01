@@ -9,20 +9,27 @@
                     <input style="display:none" type="checkbox" v-model="sideHide" id="sideswitch">
                 </div>
                 <div class="topFuncBtn clearfix">
-                    <label for="modeswitch">开发</label>
-                    <input style="display:none" type="checkbox" v-model="uraSite" id="modeswitch">
-                </div>
-                <transition name="fade">
-                    <div class="clearfix" :style="{'overflow': 'hidden'}" v-if="uraSite">
-                        <div class="topFuncBtn hidehover">背景图</div>
-                        <div class="thumbframe">
-                            <div :style="{'line-height':'20px'}">
-                                <small>下一张 倒计时：{{ countDown }}</small>
-                            </div>
-                            <img class="thumb" :style="{'backgroundImage':nextPath}" />
-                        </div>
+                    <div class="clearfix">
+                        <label for="modeswitch">开发</label>
+                        <input style="display:none" type="checkbox" v-model="uraSite" id="modeswitch">
                     </div>
-                </transition>                
+                </div>
+                <div class="devBtnWarp clearfix" v-if="uraSite">
+                    <div class="devBtn">
+                        <div class="topFuncBtn">
+                            <div class="hidehover">背景图</div>
+                            <div class="thumbframe">
+                                <div :style="{'line-height':'20px'}">
+                                    <small>下一张 倒计时：{{ countDown }}</small>
+                                </div>
+                                <img class="thumb" :style="{'backgroundImage':nextPath}" />
+                            </div>
+                        </div>
+                        <div class="topFuncBtn">今日访问量</div>
+                        <div class="topFuncBtn">今日访问量</div>
+                        <div class="topFuncBtn">今日访问量</div>
+                    </div>
+                </div>
             </div>
             <div class="naviButtonList clearfixbox">
                 <router-link class="naviButton clearfix" v-for="(ele,key) in naviBtn" :key="key" :to="ele.to">
@@ -34,14 +41,13 @@
             </div>
         </div>
     </header>
-    <transition name="width-toggle">
-    <aside :class="['naviSide',uraSite?'urabg':'normalbg']" v-show="!sideHide">
-        <div :class="['naviWrap']">
+    <aside :class="['naviSide',uraSite?'urabg':'normalbg',sideHide?'wide':'']">
+        <div :class="['naviWrap',sideHide?'wide':'']">
             <div class="naviContent">
                 <div class="userHead">
                     <div class="avatar">
-                        <span class="avatar-large">
-                            <img :src="[uraSite?'static/images/head-r.jpg':'static/images/head.jpg']" />
+                        <span>
+                            <img class="avatar-large" :src="[uraSite?'static/images/head-r.jpg':'static/images/head.jpg']" />
                         </span>
                     </div>
                     <div class="motto">我永远喜欢くすはらゆい</div>
@@ -69,7 +75,6 @@
             </div>
         </div>
     </aside>
-    </transition>
     <div :class="['mainContent', sideHide?'wide':'']">
         <div id="mainBG" ref="mainbg"/>
         <router-view ></router-view>
@@ -88,7 +93,8 @@ export default {
             sideJump: this.Common.sideJump,
             sideList: this.Common.sideList,
             sideHide: this.Common.sideHide,
-            uraSite: this.Common.uraSite,
+            //uraSite: this.Common.uraSite,
+            uraSite: true,
             nextPath: '',
             countDown: 30,
             timer: Object
