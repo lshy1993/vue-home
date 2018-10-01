@@ -11,8 +11,8 @@ Vue.use(moment);
 
 //样式表
 import './style/common.scss';
-import './style/about.scss';
 import './style/old.scss';
+import './style/transition.scss';
 
 //静态数据与方法
 import data from './data.js';

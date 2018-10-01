@@ -166,6 +166,7 @@ var stateCheckList = [
 ]
 
 var uraSite = false;
+var sideHide = false;
 
 export default{
     naviTopBtn,
@@ -176,4 +177,5 @@ export default{
     newsList,
     stateCheckList,
     uraSite,
+    sideHide
 }

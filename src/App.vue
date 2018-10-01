@@ -5,19 +5,24 @@
         <div class="topContent">
             <div class="topFunction">
                 <div class="topFuncBtn clearfix">
+                    <label for="sideswitch">{{ sideHide?"显":"隐" }}</label>
+                    <input style="display:none" type="checkbox" v-model="sideHide" id="sideswitch">
+                </div>
+                <div class="topFuncBtn clearfix">
                     <label for="modeswitch">开发</label>
                     <input style="display:none" type="checkbox" v-model="uraSite" id="modeswitch">
                 </div>
-                <div class="clearfix" v-if="uraSite">
-                    <div class="topFuncBtn hidehover">背景图</div>
-                    <div class="thumbframe">
-                        <div :style="{'line-height':'20px'}">
-                            <small>下一张 倒计时：{{ countDown }}</small>
+                <transition name="fade">
+                    <div class="clearfix" :style="{'overflow': 'hidden'}" v-if="uraSite">
+                        <div class="topFuncBtn hidehover">背景图</div>
+                        <div class="thumbframe">
+                            <div :style="{'line-height':'20px'}">
+                                <small>下一张 倒计时：{{ countDown }}</small>
+                            </div>
+                            <img class="thumb" :style="{'backgroundImage':nextPath}" />
                         </div>
-                        <img class="thumb" :style="{'backgroundImage':nextPath}" />
                     </div>
-                </div>
-                <div class="topFuncBtn clearfix">隐藏边界</div>
+                </transition>                
             </div>
             <div class="naviButtonList clearfixbox">
                 <router-link class="naviButton clearfix" v-for="(ele,key) in naviBtn" :key="key" :to="ele.to">
@@ -29,8 +34,9 @@
             </div>
         </div>
     </header>
-    <aside :class="['naviSide',uraSite?'urabg':'normalbg']">
-        <div class="naviWrap">
+    <transition name="width-toggle">
+    <aside :class="['naviSide',uraSite?'urabg':'normalbg']" v-show="!sideHide">
+        <div :class="['naviWrap']">
             <div class="naviContent">
                 <div class="userHead">
                     <div class="avatar">
@@ -63,8 +69,11 @@
             </div>
         </div>
     </aside>
-    <div id="mainBG" ref="mainbg"/>
-    <router-view class="mainContent"></router-view>
+    </transition>
+    <div :class="['mainContent', sideHide?'wide':'']">
+        <div id="mainBG" ref="mainbg"/>
+        <router-view ></router-view>
+    </div>
 </div>
 </template>
 
@@ -78,7 +87,7 @@ export default {
             naviBtn: this.Common.naviTopBtn,
             sideJump: this.Common.sideJump,
             sideList: this.Common.sideList,
-            sideHide: true,
+            sideHide: this.Common.sideHide,
             uraSite: this.Common.uraSite,
             nextPath: '',
             countDown: 30,
@@ -131,7 +140,6 @@ export default {
         right: 0;
         bottom: 0;
         transition: all 2s ease-in-out;
-        
     }
 
         .thumb {
@@ -153,10 +161,12 @@ export default {
 
 
     .mainContent {
-        //margin-top: 50px;
+        height: 100%;
         margin-left: 200px;
-        // margin-right: 15px;
-        // margin-bottom: 10px;
+        transition: all .3s;
+        &.wide {
+            margin-left: 0;
+        }
     }
 }
 </style>
