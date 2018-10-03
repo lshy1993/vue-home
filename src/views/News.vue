@@ -6,29 +6,31 @@
             <small></small>
         </header>
         <article :class="['section','whitebox',key==0?'header':'']" v-for="(ele,key) in newsList" :key="key">
-            <h3>{{ ele.title }}+{{ key }}</h3>
+            <h3>{{ ele.title }}</h3>
             <aside>
                 <time>{{ ele.time }}</time>
             </aside>
             <h4>{{ ele.sub }}</h4>
             <ul v-html="ele.innerhtml"></ul>
-            <div v-if="key>3" class="pageTopLink">
-                <a href="" title="PAGETOP">PAGETOP</a>
-            </div>
+            <page-top v-if="key>3" />
         </article>
     </div>
 </div>
 </template>
 
 <script>
+import PageTop from '../components/PageTop.vue';
+
 export default {
     name: 'News',
     data(){
         return {
             newsList: this.Common.newsList
         }
+    },
+    components: {
+        PageTop
     }
-
 }
 </script>
 

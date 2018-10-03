@@ -26,8 +26,8 @@
                             </div>
                         </div>
                         <div class="topFuncBtn">今日访问量</div>
-                        <div class="topFuncBtn">今日访问量</div>
-                        <div class="topFuncBtn">今日访问量</div>
+                        <div class="topFuncBtn">功能</div>
+                        <div class="topFuncBtn">RSS</div>
                     </div>
                 </div>
             </div>
@@ -38,6 +38,9 @@
                     </div>
                     <span class="naviTxt">{{ ele.txt }}</span>
                 </router-link>
+                <div class="naviButton clearfix" @click="showLogin">
+                    <span class="naviTxt">登陆</span>
+                </div>
             </div>
         </div>
     </header>
@@ -75,15 +78,19 @@
             </div>
         </div>
     </aside>
+    <div class="loginDiv" @click="showLogin" v-if="loginOn">
+        <login/>
+    </div>
     <div :class="['mainContent', sideHide?'wide':'']">
         <div id="mainBG" ref="mainbg"/>
-        <router-view ></router-view>
+        <router-view style="height:auto" ></router-view>
     </div>
 </div>
 </template>
 
 <script>
-import  './style/navi.scss';
+import './style/navi.scss';
+import Login from './components/Login.vue';
 
 export default {
     name: 'app',
@@ -95,6 +102,7 @@ export default {
             sideHide: this.Common.sideHide,
             //uraSite: this.Common.uraSite,
             uraSite: true,
+            loginOn: false,
             nextPath: '',
             countDown: 30,
             timer: Object
@@ -120,19 +128,23 @@ export default {
     beforeRouteEnter (to, from, next) {
         next();
     },
-    methods:{
-
+    methods: {
+        showLogin: function(){
+            this.loginOn = !this.loginOn;
+            //document.body.style.overflow = this.loginOn?"hidden":"auto";
+            document.body.classList = [this.loginOn?"hideScroll":""];
+        }
+    },
+    components:{
+        Login
     }
 }
 </script>
 
 <style lang="scss">
 #app {
-    position: relative;
     width: 100%;
-    height: auto;
-    //min-height: 100%;
-    padding-top: 50px;
+    //height: 100%;
     
     #mainBG {
         //background-image: url(/static/images/still_unit_107731.png);
@@ -148,11 +160,15 @@ export default {
         transition: all 2s ease-in-out;
     }
 
-        .thumb {
-            width: 320px;
-            height: 180px;
-            background-size: 320px 180px;
-        }
+    .thumb {
+        width: 320px;
+        height: 180px;
+        background-size: 320px 180px;
+    }
+
+    .thumbframe{
+        cursor: default;
+    }
 
     .hidehover + .thumbframe {
         position: fixed;
@@ -165,11 +181,27 @@ export default {
         opacity: 1;
     }
 
+    .loginDiv {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content:center;
+        align-items:center;
+        background:rgba(0,0,0,.4);
+        z-index: 1020;
+    }
 
     .mainContent {
-        height: 100%;
-        margin-left: 200px;
+        //height: 100%;
+        margin-left: 200px;        
+        padding-top: 50px;
         transition: all .3s;
+        z-index: 1000;
+
         &.wide {
             margin-left: 0;
         }
