@@ -44,7 +44,7 @@
 </template>
 
 <script>
-import Tag from '../components/Tag.vue';
+import Tag from '@components/tag.vue';
 export default {
     name: 'Works',
     data(){

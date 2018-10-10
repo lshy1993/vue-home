@@ -4,16 +4,15 @@
         <router-link :to="'/'" class="naviTitle">(╯‵□′)╯︵┻━┻</router-link>
         <div class="topContent">
             <div class="topFunction">
-                <div class="topFuncBtn clearfix">
-                    <label for="sideswitch">{{ sideHide?"显":"隐" }}</label>
-                    <input style="display:none" type="checkbox" v-model="sideHide" id="sideswitch">
-                </div>
-                <div class="topFuncBtn clearfix">
-                    <div class="clearfix">
-                        <label for="modeswitch">开发</label>
-                        <input style="display:none" type="checkbox" v-model="uraSite" id="modeswitch">
-                    </div>
-                </div>
+                <label for="sideswitch" class="topFuncBtn clearfix">
+                    <span>{{ sideHide?"显":"隐" }}</span>
+                    <input id="sideswitch" style="display:none" type="checkbox" v-model="sideHide">
+                </label>
+                
+                <label for="modeswitch" class="topFuncBtn clearfix">
+                    <span>开发</span>
+                    <input id="modeswitch" style="display:none" type="checkbox" v-model="uraSite">
+                </label>
                 <div class="devBtnWarp clearfix" v-if="uraSite">
                     <div class="devBtn">
                         <div class="topFuncBtn">
@@ -38,7 +37,7 @@
                     </div>
                     <span class="naviTxt">{{ ele.txt }}</span>
                 </router-link>
-                <div class="naviButton clearfix" @click="showLogin">
+                <div class="naviButton clearfix clickable" @click="showLogin">
                     <span class="naviTxt">登陆</span>
                 </div>
             </div>
@@ -90,7 +89,7 @@
 
 <script>
 import './style/navi.scss';
-import Login from './components/Login.vue';
+import Login from '@components/login.vue';
 
 export default {
     name: 'app',

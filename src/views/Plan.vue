@@ -15,7 +15,7 @@
             </h2>
             <ul>
                 <li>本作作为组长从小开始的梦想，咕咕咕了多少年后仍旧处于咕咕咕的状态。</li>
-                <li></li>
+                <li>查看<router-link :to="'/dev/1'">开发进度</router-link>，催更！</li>
             </ul>
             <h4>开发进度</h4>
             <ul>
@@ -107,8 +107,8 @@
 </template>
 
 <script>
-import Tag from '../components/Tag.vue';
-import PageTop from '../components/PageTop.vue';
+import Tag from '@components/tag.vue';
+import PageTop from '@components/pagetop.vue';
 
 export default {
     name: 'Plan',

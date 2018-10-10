@@ -1,5 +1,6 @@
 #app{
     .naviTop {
+        
         position: fixed;
         top: 0;
         width: 100%;
@@ -7,6 +8,7 @@
         z-index: 1010;
         //box-shadow: 0 1px 5px rgba(0,0,0,.2), 0 2px 2px rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.12);
         transition: background-color .2s ease-in-out 0s;
+        user-select: none;
 
         &.normalbg {
             color: #FFFFFF;
@@ -120,6 +122,7 @@
         transition: background-color .2s ease-in-out 0s;
         transition: width .3s;
         z-index: 1009;
+        user-select: none;
 
         &.wide{
             width: 0px;

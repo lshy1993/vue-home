@@ -219,8 +219,50 @@ var stateCheckList = [
     'GalWiki'
 ]
 
+var planList = [
+    
+]
+
+var ltRoute = [
+    {
+        routename: '苏梦忆',
+        color: '',
+        chapter:[
+            {"id":"1","chapter_num":"0","chapter_route":"1","chapter_name":"擦肩而过的学妹","chapter_type":"0","status":"1","words":"0"},
+            {"id":"2","chapter_num":"1","chapter_route":"1","chapter_name":"共同的新生会","chapter_type":"0","status":"1","words":"0"},
+            {"id":"3","chapter_num":"2","chapter_route":"1","chapter_name":"学生会的跑腿","chapter_type":"0","status":"1","words":null}]
+    },
+    {
+        routename: '西门吹',
+        color: '',
+        nums: [1,1,1,1,0,0,-1,-1,-1,-1]
+    },
+    {
+        routename: '推理社',
+        color: '',
+        nums: [1,1,1,1,0,0,-1,-1,-1,-1]
+    },
+    {
+        routename: '欧阳晓芸',
+        color: '',
+        nums: [1,1,1,1,0,0,-1,-1,-1,-1]
+    },
+    {
+        routename: '车小曼',
+        color: '',
+        nums: [1,1,1,1,0,0,-1,-1,-1,-1]
+    },
+    {
+        routename: '陈海瑶',
+        color: '',
+        nums: [1,1,1,1,0,0,-1,-1,-1,-1]
+    }
+]
+
 var uraSite = false;
 var sideHide = false;
+var editor = false;
+var admin = false;
 
 export default{
     naviTopBtn,
@@ -231,5 +273,8 @@ export default{
     newsList,
     stateCheckList,
     uraSite,
-    sideHide
+    sideHide,
+    editor,
+    admin,
+    ltRoute
 }

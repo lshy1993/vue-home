@@ -32,6 +32,7 @@ import Danmaku from './views/Danmaku.vue';
 import News from './views/News.vue';
 import Works from './views/Works.vue';
 import Plan from './views/Plan.vue';
+import PlanPage from './views/dev/PlanPage.vue';
 import Goods from './views/Goods.vue';
 import FriendLink from './views/Link.vue';
 
@@ -49,6 +50,7 @@ const routes = [
   { path: '/news', component: News },
   { path: '/works', component: Works },
   { path: '/dev', component: Plan },
+  { path: '/dev/:id', component: PlanPage },
   { path: '/goods', component: Goods },
   { path: '/link', component: FriendLink },
   { path: '/status', component: Status }
