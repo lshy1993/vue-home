@@ -8,24 +8,25 @@
                     <span>{{ sideHide?"显":"隐" }}</span>
                     <input id="sideswitch" style="display:none" type="checkbox" v-model="sideHide">
                 </label>
-                
                 <label for="modeswitch" class="topFuncBtn clearfix">
-                    <span>开发</span>
+                    <span>{{ $t('dev') }}</span>
                     <input id="modeswitch" style="display:none" type="checkbox" v-model="uraSite">
                 </label>
                 <div class="devBtnWarp clearfix" v-if="uraSite">
                     <div class="devBtn">
                         <div class="topFuncBtn">
-                            <div class="hidehover">背景图</div>
+                            <div class="hidehover">{{ $t('backimg') }}</div>
                             <div class="thumbframe">
                                 <div :style="{'line-height':'20px'}">
-                                    <small>下一张 倒计时：{{ countDown }}</small>
+                                    <small>{{　$t('next') }}{{ countDown }}</small>
                                 </div>
                                 <img class="thumb" :style="{'backgroundImage':nextPath}" />
                             </div>
                         </div>
-                        <div class="topFuncBtn">今日访问量</div>
-                        <div class="topFuncBtn">功能</div>
+                        <div class="topFuncBtn">
+                            <div class="hidehover">言语</div>
+                        </div>
+                        <div class="topFuncBtn">访问量</div>
                         <div class="topFuncBtn">RSS</div>
                     </div>
                 </div>
@@ -35,10 +36,23 @@
                     <div class="naviImg small_icon">
                         <img :src="ele.url" />
                     </div>
-                    <span class="naviTxt">{{ ele.txt }}</span>
+                    <span class="naviTxt">{{ $t(ele.txt) }}</span>
                 </router-link>
+                <div class="clearfix">
+                    <div class="naviButton clickable" @click="showLang">
+                        <span class="naviTxt">语言</span>
+                    </div>
+                    <div class="localechanger" v-if="setting">
+                        <span class="localehint">语言/Language/言語</span>
+                        <div>
+                            <select class="localeselect" v-model="$i18n.locale">
+                                <option v-for="(lang, i) in langs" :key="i" :value="lang.locale">{{ lang.txt }}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
                 <div class="naviButton clearfix clickable" @click="showLogin">
-                    <span class="naviTxt">登陆</span>
+                    <span class="naviTxt">{{ $t("login") }}</span>
                 </div>
             </div>
         </div>
@@ -100,7 +114,9 @@ export default {
             sideList: this.Common.sideList,
             sideHide: this.Common.sideHide,
             //uraSite: this.Common.uraSite,
+            langs: this.Common.langs,
             uraSite: true,
+            setting: false,
             loginOn: false,
             nextPath: '',
             countDown: 30,
@@ -108,18 +124,19 @@ export default {
         }
     },
     mounted(){
-        var self = this;
         clearInterval(this.timer);
-        self.$refs.mainbg.style.backgroundImage = this.Func.ranBG();
-        self.nextPath = this.Func.ranBG();
+        this.$refs.mainbg.style.backgroundImage = this.Func.ranBG();
+        this.nextPath = this.Func.ranBG();
+
+        var _self = this;
         this.timer = setInterval(()=>{
-            if(self.countDown == 0){
-                self.$refs.mainbg.style.backgroundImage = self.nextPath;
+            if(_self.countDown == 0){
+                _self.$refs.mainbg.style.backgroundImage = _self.nextPath;
                 //重置时间与下一张图
-                self.countDown = 30;
-                self.nextPath = this.Func.ranBG();
+                _self.countDown = 30;
+                _self.nextPath = this.Func.ranBG();
             }else{
-                self.countDown--;
+                _self.countDown--;
             }
             
         }, 1000);
@@ -132,6 +149,9 @@ export default {
             this.loginOn = !this.loginOn;
             //document.body.style.overflow = this.loginOn?"hidden":"auto";
             document.body.classList = [this.loginOn?"hideScroll":""];
+        },
+        showLang: function(){
+            this.setting = !this.setting;
         }
     },
     components:{
@@ -165,7 +185,7 @@ export default {
         background-size: 320px 180px;
     }
 
-    .thumbframe{
+    .thumbframe {
         cursor: default;
     }
 
@@ -178,6 +198,20 @@ export default {
     }
     .hidehover:hover + .thumbframe {
         opacity: 1;
+    }
+
+    .localechanger {
+        position: fixed;
+        text-align: center;
+        background: #2e3243;
+        padding: 10px;
+
+        .localehint {
+            display: block;
+            //line-height: 0;
+            font-size: 12px;
+            margin-bottom: 5px;
+        }
     }
 
     .loginDiv {

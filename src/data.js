@@ -1,19 +1,33 @@
+var langs = [
+    {
+        locale: 'zh',
+        txt: '中文'
+    },
+    {
+        locale: 'ja',
+        txt: '日本語'
+    },
+    {
+        locale: 'en',
+        txt: 'English'
+    }
+]
 var naviTopBtn = [
     {
         to: "/about",
-        txt: "关于我"
+        txt: 'navt.about',
     },
     {
         to: "/intro",
-        txt: "关于掀桌"
+        txt: 'navt.site',
     },
     {
         to: "/download",
-        txt: "下载站"
+        txt: 'navt.download'
     },
     {
         to: "/danmu",
-        txt: "弹幕留言"
+        txt: 'navt.danmaku'
     }
 ];
 
@@ -265,6 +279,7 @@ var editor = false;
 var admin = false;
 
 export default{
+    langs,
     naviTopBtn,
     sideJump,
     sideList,

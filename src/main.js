@@ -1,13 +1,26 @@
 import Vue from 'vue';
-import VueRouter from 'vue-router'
-Vue.use(VueRouter)
 
-import axios from 'axios'
-import VueAxios from 'vue-axios'
+import VueI18n from 'vue-i18n';
+Vue.use(VueI18n);
+
+import VueRouter from 'vue-router';
+Vue.use(VueRouter);
+
+import axios from 'axios';
+import VueAxios from 'vue-axios';
 Vue.use(VueAxios,axios);
 
 import moment from 'vue-moment';
 Vue.use(moment);
+
+import { lq } from './language.js';
+
+const i18n = new VueI18n({
+  locale: 'ja',    // 语言标识
+  //this.$i18n.locale // 通过切换locale的值来实现语言切换
+  messages: lq
+})
+
 
 //样式表
 import './style/common.scss';
@@ -63,9 +76,10 @@ const router = new VueRouter({
 
 const app = new Vue({
   el: '#app',
+  i18n,
+  router: router,
   template: '<App/>',
   components: { 
     App
-  },
-  router: router
+  }
 }).$mount('#app');

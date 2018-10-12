@@ -68,13 +68,13 @@
             .devBtnWarp {
                 display: inline-block;
                 overflow: hidden;
-                width: 600px;
+                //width: 600px;
                 transition: width .2s;
 
                 .devBtn {
                     position: relative;
                     display: inline-block;
-                    width: 600px;
+                    //width: 600px;
                 }
             }
             
@@ -86,7 +86,7 @@
         .naviButtonList {
             float: right;
             position: relative;
-            line-height: 50px;
+            //line-height: 50px;
             //margin: 0 10px;
 
             .naviButton {
