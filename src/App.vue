@@ -85,7 +85,7 @@
                         <span>MIAO小屋</span>
                     </div>
                     <router-link class="naviList" :to="ele.to" v-for="(ele,key) in sideList" :key="key">
-                        <span>{{ ele.txt }}</span>
+                        <span>{{ $t(ele.txt) }}</span>
                     </router-link>
                 </div>
             </div>

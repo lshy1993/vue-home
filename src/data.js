@@ -49,31 +49,31 @@ var sideJump = [
 var sideList = [
     {
         to: "/news",
-        txt: "最新消息"
+        txt: "navs.news"
     },
     {
         to: "/works",
-        txt: "作品一览"
+        txt: "navs.works"
     },
     {
         to: "/dev",
-        txt: "开发计划"
+        txt: "navs.dev"
     },
     {
         to: "/member",
-        txt: "成员招募"
+        txt: "navs.member"
     },
     {
         to: "/goods",
-        txt: "资源周边"
+        txt: "navs.goods"
     },
     {
         to: "/link",
-        txt: "友情链接"
+        txt: "navs.link"
     },
     {
         to: "/status",
-        txt: "IO"
+        txt: "navs.io"
     }
 ];
 
