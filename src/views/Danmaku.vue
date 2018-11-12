@@ -19,6 +19,11 @@
             </li>
         </ol>
     </div>
+    <div>
+        发送弹幕
+        <input type="textbox" />
+        <button>发送</button>
+    </div>
 </div>
 </template>
 
@@ -40,7 +45,7 @@ export default {
     },
     methods: {
         getComments: function(){
-            this.$http.get("//localhost:3000/main/comment").then((response)=>{
+            this.$http.get("//api.liantui.xyz/main/comment").then((response)=>{
                 this.commentList = response.data;
             });
         },

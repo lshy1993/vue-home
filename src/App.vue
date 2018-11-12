@@ -3,6 +3,14 @@
     <header :class="['naviTop',uraSite?'urabg':'normalbg']">
         <router-link :to="'/'" class="naviTitle">(╯‵□′)╯︵┻━┻</router-link>
         <div class="topContent">
+            <aplayer autoplay
+  :music="{
+    title: 'secret base~君がくれたもの~',
+    artist: 'Silent Siren',
+    src: 'https://moeplayer.b0.upaiyun.com/aplayer/secretbase.mp3',
+    pic: 'https://moeplayer.b0.upaiyun.com/aplayer/secretbase.jpg'
+  }"
+/>
             <div class="topFunction">
                 <label for="sideswitch" class="topFuncBtn clearfix">
                     <span>{{ sideHide?"显":"隐" }}</span>
@@ -69,6 +77,8 @@
                     <div class="motto">我永远喜欢くすはらゆい</div>
                 </div>
                 <div class="line"></div>
+                <mini-player :musictitle="music.title" :audioStatus="aStatus" />
+                <div class="line"></div>
                 <div class="userMiddle">
                     <div class="hintText">
                         <span>导航站</span>
@@ -91,6 +101,10 @@
             </div>
         </div>
     </aside>
+    <audio id="myAudio" :src="music.src" loop="loop" autoplay="autoplay"/>
+    <div class="siteFoot">
+        <foot-player :audioStatus="aStatus"/>
+    </div>
     <div class="loginDiv" @click="showLogin" v-if="loginOn">
         <login/>
     </div>
@@ -103,6 +117,9 @@
 
 <script>
 import './style/navi.scss';
+import Aplayer from 'vue-aplayer';
+import MiniPlayer from '@components/MiniPlayer.vue';
+import FootPlayer from '@components/FootPlayer.vue';
 import Login from '@components/login.vue';
 
 export default {
@@ -120,29 +137,45 @@ export default {
             loginOn: false,
             nextPath: '',
             countDown: 30,
-            timer: Object
+            timer: Object,
+            aStatus:{
+                playedTime: 0,
+                loadedTime: 0,
+                duration: 0
+            },
+            music:{
+                title: 'secret base~君がくれたもの~',
+                artist: 'Silent Siren',
+                src: '//liantui.xyz/static/audio/shuihuq.mp3',
+                pic: 'https://moeplayer.b0.upaiyun.com/aplayer/secretbase.jpg'
+            }
         }
     },
     mounted(){
-        clearInterval(this.timer);
+        this.audio = document.getElementById("myAudio");
+        this.audio.addEventListener('timeupdate', this.onAudioTimeUpdate);
+        this.audio.addEventListener('progress', this.onAudioProgress);  
+        this.audio.addEventListener('durationchange', this.onAudioDurationChange);
+
+        //clearInterval(this.timer);
         this.$refs.mainbg.style.backgroundImage = this.Func.ranBG();
         this.nextPath = this.Func.ranBG();
 
         var _self = this;
-        this.timer = setInterval(()=>{
-            if(_self.countDown == 0){
-                _self.$refs.mainbg.style.backgroundImage = _self.nextPath;
-                //重置时间与下一张图
-                _self.countDown = 30;
-                _self.nextPath = this.Func.ranBG();
-            }else{
-                _self.countDown--;
-            }
+        // this.timer = setInterval(()=>{
+        //     if(_self.countDown == 0){
+        //         _self.$refs.mainbg.style.backgroundImage = _self.nextPath;
+        //         //重置时间与下一张图
+        //         _self.countDown = 30;
+        //         _self.nextPath = this.Func.ranBG();
+        //     }else{
+        //         _self.countDown--;
+        //     }
             
-        }, 1000);
+        // }, 1000);
     },
     beforeRouteEnter (to, from, next) {
-        next();
+        //next();
     },
     methods: {
         showLogin: function(){
@@ -152,10 +185,28 @@ export default {
         },
         showLang: function(){
             this.setting = !this.setting;
-        }
+        },
+        onAudioTimeUpdate(){
+            this.aStatus.playedTime = this.audio.currentTime;
+        },
+        onAudioDurationChange(){
+            if (this.audio.duration !== 1) {
+                this.aStatus.duration = this.audio.duration;
+            }
+        },
+        onAudioProgress () {
+            if (this.audio.buffered.length) {
+                this.aStatus.loadedTime = this.audio.buffered.end(this.audio.buffered.length - 1);
+            } else {
+                this.aStatus.loadedTime = 0;
+            }
+        },
     },
     components:{
-        Login
+        Login,
+        MiniPlayer,
+        FootPlayer,
+        Aplayer
     }
 }
 </script>
