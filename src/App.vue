@@ -110,7 +110,16 @@
     </div>
     <div :class="['mainContent', sideHide?'wide':'']">
         <div id="mainBG" ref="mainbg"/>
-        <router-view style="height:auto" ></router-view>
+        <router-view style="height:auto;display:block;" ></router-view>
+        <div class="whitebox copyright">
+            <a class="hosting" href="//futa.moe">
+                <i aria-hidden="true" class="far fa-heart"></i> Hosted by Conoha
+                <span class="link">//liantui.xyz</span>
+            </a>
+            <div>
+                Copyright © 2012-2018 MIAO, Lucky. Illustrations have their own licenses.
+            </div>
+        </div>
     </div>
 </div>
 </template>
@@ -288,6 +297,9 @@ export default {
     }
 
     .mainContent {
+        //position: relative;
+        //min-height: 100%;
+        //height: 100% auto !important;
         //height: 100%;
         margin-left: 200px;        
         padding-top: 50px;
@@ -296,6 +308,11 @@ export default {
 
         &.wide {
             margin-left: 0;
+        }
+
+        .copyright{
+            //position: absolute;
+            bottom: 0;
         }
     }
 }

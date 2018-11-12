@@ -1,36 +1,38 @@
 /*首页标语*/
 #sloganBox {
     padding-top: 50px;
-    height: 30%;
-	min-height: 200px;
+    //height: 30%;
+	//min-height: 200px;
     color: black;
     
     #indexPostBig {
         position: relative;
-        left: 200px;
-        width: 400px;
-        font-size: 32px;
+        padding: 0 200px;
+        
+        text-shadow: 4px 3px 2px grey;
+
         p {
             margin-bottom: 16px;
-            //opacity: 0;
         }
         #topSlogan-01 {
+            font-size: 48px;
             text-align: left;
         }
         #topSlogan-02 {
+            font-size: 32px;
             text-align: right;
         }
     }
 
     #indexPostSmall {
         position: relative;
-        left: 640px;
-        top: 10px;
-        width: 220px;
+        //left: 640px;
+        //width: 220px;
         font-size: 24px;
+
         p {
-            text-align: left;
-            margin-bottom: 12px;
+            text-align: right;
+            margin-bottom: 10px;
             //opacity: 0;
         }
     }
@@ -39,52 +41,84 @@
 /*项目快速一览*/
 #quickNavi {
     display: block;
+    margin-top: 10px;
+    
     .naviBlock{
         background: #69F;
         margin: 5px;
         width: 30%;
         height: 200px;
+        border-radius: 20px;
     }
 }
+
 
 /*首页信息框*/
 #indexUpdateInfo {
-	position: relative;
-	//padding-top : 200px;
-	//width: 720px!important;
-	margin:0 auto;
-	color: #fff;
-}
-.topUpdateInfoWrapper {
-    width: 720px!important;
-}
-#infoControlPrev {
-	position: absolute;
-	left: 0;
-	bottom: 50px;
-    z-index: 998;
-    a {
-        //background: url(../img/arrow.png) 0 0;
+    position: relative;
+    display: block;
+	//margin: 0 auto;
+    color: #fff;
+
+    #indexSnsInfo {
+        display: inline-block;
+        position: absolute;
+        right: 0;
+        min-width: 300px;
+        width: 30%;
+        background: rgba(0, 0, 0, 0.6);
     }
 
-    a:hover {
-        //background-position: left -70px;
+    #indexNewsInfo {
+        display: inline-block;
+        position: absolute;
+        left: 0;
+        width: 65%;
+        background: rgba(0, 0, 0, 0.6);
+        
+
+        .topUpdateInfoList {
+            font-size: 14px;
+            text-align: left;
+            margin-top: 15px;
+            padding-left: 0 40px;
+            
+            dt {
+                float: left;
+                padding-left: 25px;
+            }
+            
+            .new {
+                background: url(/static/images/new.png) no-repeat 0 2px;
+            }
+    
+            dd {
+                margin: 0 0 0 130px;
+                padding-right: 35px;
+                padding-bottom: 8px;
+                /*line-height: 1.8em;*/
+                a { color: #69F; }
+                a:hover { text-decoration: underline; }
+    
+            }
+            
+        }
     }
+
+}
+
+
+
+#infoControlPrev {
+    position: absolute;
+    left: 0;
+    bottom: 50px;
 }
 
 #infoControlNext {
-	position: absolute;
-	right: 0;
-	bottom: 50px;
-    z-index: 998;
-
-    a {
-        //background: url(../img/arrow.png) right 0;
-    }
-
-    a:hover {
-        //background-position: right -70px;
-    }
+    position: absolute;
+    right: 0;
+    bottom: 50px;
 }
 
 	.browse {
@@ -94,37 +128,5 @@
 		cursor: pointer;
     }
     
-#topUpdateInfo {
-	background: rgba(0, 0, 0, 0.6);
-	padding: 10px 35px;
-	height: 150px!important;
-}
-	.topUpdateInfoList {
-		/*position: relative;*/
-		float: left;
-		width: 720px;
-		font-size: 14px;
-		text-align: left;
-		padding-left: 40px;
-        padding-top: 15px;
-        
-        dt {
-			float: left;
-			padding-left: 25px;
-        }
-        
-        .new {
-            //background: url(../img/new.png) no-repeat 0 2px;
-        }
 
-        dd {
-			margin: 0 0 0 130px;
-			padding-right: 35px;
-			padding-bottom: 8px;
-            /*line-height: 1.8em;*/
-            a { color: #69F; }
-            a:hover { text-decoration: underline; }
-
-        }
-        
-	}
+	
