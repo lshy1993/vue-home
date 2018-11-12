@@ -12,14 +12,14 @@
                 <p id="topPost-03"><span>未来的方向。</span></p>
             </div>
         </div>
-        <div id="quickNavi">
-            <div>
+        <div id="quickNavi" class="clearfixbox">
+            <div class="clearfix naviBlock">
                 项目1: pcrwiki
             </div>
-            <div>
+            <div class="clearfix naviBlock">
                 项目2: erowiki
             </div>
-            <div>
+            <div class="clearfix naviBlock">
                 项目3: 恋推
             </div>
         </div>
@@ -27,9 +27,12 @@
             <div id="infoControlPrev"><a class="prev browse"></a></div>
             <div id="infoControlNext"><a class="next browse"></a></div>
             <div id="topUpdateInfo">
+                <li>可以下载『恋爱与推理（暂定）试玩版』了！！！才怪</li>
             </div>
         </div>
-        
+        <div class="floatSu">
+            <img src="/static/images/fsu.jpg" />
+        </div>
     </div>
 </div>
 </template>
@@ -48,5 +51,10 @@ export default {
 </script>
 
 <style lang="scss">
-
+    .floatsu{
+        position: fixed;
+        right: 20px;
+        bottom: 20px;
+        width: 200px;
+    }
 </style>

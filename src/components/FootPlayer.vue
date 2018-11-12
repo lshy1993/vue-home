@@ -9,8 +9,8 @@
         <span>{{ changeTime(audioStatus.playedTime) }}</span>/
         <span>{{ changeTime(audioStatus.duration) }}</span>
     </div>
-    <div class="volumeBar">
-        <div class="volumeFore" :style="'width:'+volume*100+'%'"/>
+    <div @mousedown="onVolumeMouseDown" ref="volumeWrap" class="volumeBar">
+        <div class="volumeFore" :style="'width:'+audioStatus.volume*100+'%'" />
     </div>
     <div v-if="false">
         <ul>1</ul>
@@ -26,14 +26,10 @@ export default {
     props: ['audioStatus'],
     data(){
         return {
-            timer: Object,
-            audio: Object,
-            //playedTime: 1.1,
-            //loadedTime: 0
+            audio: Object
         }
     },
     mounted(){
-        clearInterval(this.timer);
         this.audio = document.getElementById("myAudio");
     },
     computed:{
@@ -42,9 +38,6 @@ export default {
         },
         loadProgress: function(){
             return this.audioStatus.loadedTime / this.audioStatus.duration;
-        },
-        volume: function(){
-            return this.audio.volume;
         }
     },
     methods:{
@@ -61,8 +54,6 @@ export default {
             let percentage = (e.clientX-200) / barWidth;
             percentage = percentage > 0 ? percentage : 0;
             percentage = percentage < 1 ? percentage : 1;
-            //console.log('dragbegin', percentage);
-            //this.$emit('dragbegin', percentage);
             this.audio.pause();
             this.audio.currentTime = this.audio.duration * percentage;
             document.addEventListener('mousemove', this.onMouseMove);
@@ -73,8 +64,6 @@ export default {
             let percentage = (e.clientX-200) / barWidth;
             percentage = percentage > 0 ? percentage : 0;
             percentage = percentage < 1 ? percentage : 1;
-            //this.$emit('dragging', percentage);
-            //console.log('dragging', percentage);
             this.audio.currentTime = this.audio.duration * percentage;
         },
         onMouseUp (e) {
@@ -84,14 +73,45 @@ export default {
             let percentage = (e.clientX-200) / barWidth;
             percentage = percentage > 0 ? percentage : 0;
             percentage = percentage < 1 ? percentage : 1;
-            //this.$emit('dragend', percentage)
-            //console.log('dragend', percentage);
             this.audio.currentTime = this.audio.duration * percentage;
             this.audio.play();
         },
+        onVolumeMouseDown (e) {
+            const barWidth = this.$refs.volumeWrap.clientWidth;
+            let percentage = (e.clientX-this.getElementViewLeft(this.$refs.volumeWrap)) / barWidth;
+            percentage = percentage > 0 ? percentage : 0;
+            percentage = percentage < 1 ? percentage : 1;
+            this.audio.volume = percentage;
+            document.addEventListener('mousemove', this.onVolumeMouseMove);
+            document.addEventListener('mouseup', this.onVolumeMouseUp);
+        },
+        onVolumeMouseMove (e) {
+            const barWidth = this.$refs.volumeWrap.clientWidth;
+            let percentage = (e.clientX-this.getElementViewLeft(this.$refs.volumeWrap)) / barWidth;
+            percentage = percentage > 0 ? percentage : 0;
+            percentage = percentage < 1 ? percentage : 1;
+            this.audio.volume = percentage;
+            console.log(percentage);
+        },
+        onVolumeMouseUp (e) {
+            document.removeEventListener('mouseup', this.onVolumeMouseUp);
+            document.removeEventListener('mousemove', this.onVolumeMouseMove);
+        },
         changeTime: function(ft){
             return this.$moment(ft*1000).format('mm:ss');
+        },
+        getElementViewLeft (element) {
+            let actualLeft = element.offsetLeft;
+            let current = element.offsetParent;
+            let elementScrollLeft;
+            while (current !== null) {
+                actualLeft += current.offsetLeft;
+                current = current.offsetParent;
+            }
+            elementScrollLeft = document.body.scrollLeft + document.documentElement.scrollLeft;
+            return actualLeft - elementScrollLeft;
         }
+
     }
 }
 </script>
@@ -141,7 +161,7 @@ export default {
             position: absolute;
             background: rgb(65, 184, 131);
             height: 100%;
-            transition: all .5s ease;
+            //transition: all .5s ease;
         }
 
     }

@@ -1,7 +1,6 @@
 <template>
 <div id="miniPlayer">
-    <!--audio id="myAudio" :src="music.src" loop="loop" autoplay="autoplay"/!-->
-    <div @click="clickBar" class="progressBack">
+    <div @mousedown="onMiniMouseDown" ref="miniBar" class="progressBack">
         <div class="progressFore" :style="'width:'+playProgress*100+'%'"></div>
         <div class="bufferFore" :style="'width:'+loadProgress*100+'%'"></div>
     </div>
@@ -15,21 +14,11 @@ export default {
     props: ['musictitle','audioStatus'],
     data(){
         return {
-            timer: Object,
-            audio: Object,
-            //playedTime: 1.1,
-            //loadedTime: 0
+            audio: Object
         }
     },
     mounted(){
-        clearInterval(this.timer);
         this.audio = document.getElementById("myAudio");
-        // var _self = this;
-        // _self.timer = setInterval(()=>{
-        //     _self.playedTime = _self.audio.currentTime;
-        //     _self.loadedTime = _self.audio.buffered.end(0);
-        //     //console.log(_self.audio.buffered.start(0));
-        // }, 500);
     },
     computed:{
         playProgress: function(){
@@ -47,6 +36,44 @@ export default {
             }else{
                 this.audio.pause();
             }
+        },
+        onMiniMouseDown (e) {
+            const barWidth = this.$refs.miniBar.clientWidth;
+            let percentage = (e.clientX-this.getElementViewLeft(this.$refs.miniBar)) / barWidth;
+            percentage = percentage > 0 ? percentage : 0;
+            percentage = percentage < 1 ? percentage : 1;
+            this.audio.pause();
+            this.audio.currentTime = this.audio.duration * percentage;
+            document.addEventListener('mousemove', this.onMiniMouseMove);
+            document.addEventListener('mouseup', this.onMiniMouseUp);
+        },
+        onMiniMouseMove (e) {
+            const barWidth = this.$refs.miniBar.clientWidth;
+            let percentage = (e.clientX-this.getElementViewLeft(this.$refs.miniBar)) / barWidth;
+            percentage = percentage > 0 ? percentage : 0;
+            percentage = percentage < 1 ? percentage : 1;
+            this.audio.currentTime = this.audio.duration * percentage;
+        },
+        onMiniMouseUp (e) {
+            document.removeEventListener('mouseup', this.onMiniMouseUp);
+            document.removeEventListener('mousemove', this.onMiniMouseMove);
+            // const barWidth = this.$refs.miniBar.clientWidth;
+            // let percentage = (e.clientX-this.getElementViewLeft(this.$refs.miniBar)) / barWidth;
+            // percentage = percentage > 0 ? percentage : 0;
+            // percentage = percentage < 1 ? percentage : 1;
+            // this.audio.currentTime = this.audio.duration * percentage;
+            this.audio.play();
+        },
+        getElementViewLeft (element) {
+            let actualLeft = element.offsetLeft;
+            let current = element.offsetParent;
+            let elementScrollLeft;
+            while (current !== null) {
+                actualLeft += current.offsetLeft;
+                current = current.offsetParent;
+            }
+            elementScrollLeft = document.body.scrollLeft + document.documentElement.scrollLeft;
+            return actualLeft - elementScrollLeft;
         }
     }
 }

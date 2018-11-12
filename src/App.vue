@@ -3,14 +3,14 @@
     <header :class="['naviTop',uraSite?'urabg':'normalbg']">
         <router-link :to="'/'" class="naviTitle">(╯‵□′)╯︵┻━┻</router-link>
         <div class="topContent">
-            <aplayer autoplay
+            <!--aplayer autoplay
   :music="{
     title: 'secret base~君がくれたもの~',
     artist: 'Silent Siren',
     src: 'https://moeplayer.b0.upaiyun.com/aplayer/secretbase.mp3',
     pic: 'https://moeplayer.b0.upaiyun.com/aplayer/secretbase.jpg'
   }"
-/>
+/-->
             <div class="topFunction">
                 <label for="sideswitch" class="topFuncBtn clearfix">
                     <span>{{ sideHide?"显":"隐" }}</span>
@@ -102,7 +102,7 @@
         </div>
     </aside>
     <audio id="myAudio" :src="music.src" loop="loop" autoplay="autoplay"/>
-    <div class="siteFoot">
+    <div v-if="uraSite" class="siteFoot">
         <foot-player :audioStatus="aStatus"/>
     </div>
     <div class="loginDiv" @click="showLogin" v-if="loginOn">
@@ -117,7 +117,7 @@
 
 <script>
 import './style/navi.scss';
-import Aplayer from 'vue-aplayer';
+//import Aplayer from 'vue-aplayer';
 import MiniPlayer from '@components/MiniPlayer.vue';
 import FootPlayer from '@components/FootPlayer.vue';
 import Login from '@components/login.vue';
@@ -141,7 +141,9 @@ export default {
             aStatus:{
                 playedTime: 0,
                 loadedTime: 0,
-                duration: 0
+                duration: 0,
+                volume: 0,
+                isMuted: false
             },
             music:{
                 title: 'secret base~君がくれたもの~',
@@ -155,13 +157,14 @@ export default {
         this.audio = document.getElementById("myAudio");
         this.audio.addEventListener('timeupdate', this.onAudioTimeUpdate);
         this.audio.addEventListener('progress', this.onAudioProgress);  
-        this.audio.addEventListener('durationchange', this.onAudioDurationChange);
+        this.audio.addEventListener('durationchange', this.onAudioDurationChange);        
+        this.audio.addEventListener('volumechange', this.onAudioVolumeChange)
 
         //clearInterval(this.timer);
-        this.$refs.mainbg.style.backgroundImage = this.Func.ranBG();
-        this.nextPath = this.Func.ranBG();
+        //this.$refs.mainbg.style.backgroundImage = this.Func.ranBG();
+        //this.nextPath = this.Func.ranBG();
 
-        var _self = this;
+        //var _self = this;
         // this.timer = setInterval(()=>{
         //     if(_self.countDown == 0){
         //         _self.$refs.mainbg.style.backgroundImage = _self.nextPath;
@@ -195,18 +198,23 @@ export default {
             }
         },
         onAudioProgress () {
-            if (this.audio.buffered.length) {
-                this.aStatus.loadedTime = this.audio.buffered.end(this.audio.buffered.length - 1);
+            var len = this.audio.buffered.length;
+            if (len) {
+                this.aStatus.loadedTime = this.audio.buffered.end(len - 1);
             } else {
                 this.aStatus.loadedTime = 0;
             }
+        },
+        onAudioVolumeChange () {
+            this.aStatus.volume = this.audio.volume;
+            this.aStatus.isMuted = this.audio.muted;
         },
     },
     components:{
         Login,
         MiniPlayer,
         FootPlayer,
-        Aplayer
+        //Aplayer
     }
 }
 </script>
@@ -217,7 +225,7 @@ export default {
     //height: 100%;
     
     #mainBG {
-        //background-image: url(/static/images/still_unit_107731.png);
+        background-image: url(/static/images/bg_Halloween.jpg);
         background-size: cover;
         background-position: right bottom;
         background-repeat: no-repeat;
