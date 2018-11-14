@@ -1,6 +1,6 @@
 <template>
 <div id="footPlayer">
-    <div @click="clickBar" >stop</div>
+    <div @click="clickBar" class="playButton">stop</div>
     <div @mousedown="onMouseDown" ref="barWrap" class="progressBack">
         <div class="progressFore" :style="'width:'+playProgress*100+'%'" />
         <div class="bufferFore" :style="'width:'+loadProgress*100+'%'" />
@@ -120,7 +120,10 @@ export default {
 #footPlayer{
     padding-left: 200px;
     
-
+    .playButton{
+        display: inline-block;
+        width: 10%;
+    }
     .progressBack{
         display: inline-block;
         width: 60%;

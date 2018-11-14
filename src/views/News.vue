@@ -8,7 +8,7 @@
         <article :class="['section','whitebox',key==0?'header':'']" v-for="(ele,key) in newsList" :key="key">
             <h3>{{ ele.title }}</h3>
             <aside>
-                <time>{{ ele.time }}</time>
+                <time>{{ changeTime(ele.time) }}</time>
             </aside>
             <h4>{{ ele.sub }}</h4>
             <ul v-html="ele.innerhtml"></ul>
@@ -19,13 +19,27 @@
 </template>
 
 <script>
+import moment from 'moment';
 import PageTop from '@components/pagetop.vue';
 
 export default {
     name: 'News',
     data(){
         return {
-            newsList: this.Common.newsList
+            newsList: []
+        }
+    },
+    created(){
+        this.getNewsList();
+    },
+    methods:{
+        getNewsList(){
+            this.$http.get("//api.liantui.xyz/main/news").then((response)=>{
+                this.newsList = response.data;
+            });
+        },
+        changeTime: function(tt){
+            return this.$moment(tt).format('YYYY年MM月DD日');
         }
     },
     components: {

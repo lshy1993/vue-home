@@ -15,80 +15,46 @@
         <div id="quickNavi" class="clearfixbox">
             <!--div id="infoControlPrev"><a class="prev browse"></a></div>
             <div id="infoControlNext"><a class="next browse"></a></div-->
-            <div class="clearfix naviBlock">
-                项目1: pcrwiki
+            <div class="naviBlock clearfixbox">
+                <div class="blockBg clearfix">
+                    <div class="movingBg" style="background-image:url(/static/images/still_unit_100131.png)" />
+                </div>
+                <div class="blockWrap clearfix">
+                    <h2>PcrWiki</h2>
+                    <p class="blockSummary">公主链接Wiki，摸鱼缓慢更新中</p>
+                    <div class="line"/>
+                    <div class="blockFoot">幸运的路奇</div>
+                    <a href="//pcrwiki.liantui.moe" />
+                </div>
             </div>
-            <div class="clearfix naviBlock">
-                项目2: erowiki
+            <div class="naviBlock clearfixbox">
+                <div class="blockBg clearfix">
+                    <div class="movingBg" style="background-image:url(/static/images/still_unit_100131.png)" />
+                </div>
+                <div class="blockWrap clearfix">
+                    <h2>恋爱与推理</h2>
+                    <p class="blockSummary">校园恋爱推理AVG，绝赞咕咕咕中</p>
+                    <div class="line"/>
+                    <div class="blockFoot">幸运的路奇</div>
+                    <a href="//pcrwiki.liantui.moe" />
+                </div>
             </div>
-            <div class="clearfix naviBlock">
-                项目3: 恋推
+            <div class="naviBlock clearfixbox">
+                <div class="blockBg clearfix">
+                    <div class="movingBg" style="background-image:url(/static/images/still_unit_100131.png)" />
+                </div>
+                <div class="blockWrap clearfix">
+                    <h2>时间轮回的终点</h2>
+                    <p class="blockSummary">轮回向解密AVG，绝赞咕咕咕中</p>
+                    <div class="line"/>
+                    <div class="blockFoot">幸运的路奇</div>
+                    <a href="//pcrwiki.liantui.moe" />
+                </div>
             </div>
         </div>
         <div id="indexUpdateInfo">
             <div id="indexNewsInfo">
-                <dl class="topUpdateInfoList">
-                    <dt class="new">2014年8月15日</dt>
-                    <dd>可以下载『恋爱与推理（暂定）试玩版』了！！！才怪</dd>
-                </dl>
-                <dl class="topUpdateInfoList">
-                    <dt>2014年7月6日</dt>
-                    <dd>可以看到『这不是我的高中生活（暂定）』的<a href="./project/01/introduction.html">游戏简介</a>了。</dd>
-                    <dd>还有分集介绍哦，点<a href="./project/01/story.html">这里</a>！</dd>
-                </dl>
-				<dl class="topUpdateInfoList">
-					<dt class="">2014年8月14日</dt>
-					<dd>『这不是我的高中生活（暂定）』的<a href="./project/01/tips-ending.html">结局介绍</a>初步完成。</dd>
-				</dl>
-				<dl class="topUpdateInfoList">
-					<dt>2014年7月8日</dt>
-					<dd>『这不是我的高中生活（暂定）』的<a href="./project/01/character.html">角色介绍</a>可以观看了。</dd>
-				</dl>
-				<dl class="topUpdateInfoList">
-					<dt>2014年7月6日</dt>
-					<dd>可以看到『这不是我的高中生活（暂定）』的<a href="./project/01/introduction.html">游戏简介</a>了。</dd>
-					<dd>还有分集介绍哦，点<a href="./project/01/story.html">这里</a>！</dd>
-				</dl>
-				<dl class="topUpdateInfoList">
-					<dt>2014年7月5日</dt>
-					<dd>『这不是我的高中生活（暂定）』的<a href="./project/01.html">介绍首页</a>设计好了。</dd>
-				</dl>
-				<dl class="topUpdateInfoList">
-					<dt>2014年7月2日</dt>
-					<dd>所有制作中的游戏在<a href="./project/">这里</a>可以看到了。</dd>
-				</dl>
-				<dl class="topUpdateInfoList">
-					<dt>2014年7月1日</dt>
-					<dd>姑且公开了网页的<a href="/contract.html">联系方式</a>！</dd>
-				</dl>
-				<dl class="topUpdateInfoList">
-					<dt>2014年6月30日</dt>
-					<dd><a href="/partner.html">友情链接</a>水水地完成了！</dd>
-				</dl>
-					<dl class="topUpdateInfoList">
-					<dt>2014年6月29日</dt>
-					<dd>网站添加了<a href="/news.html">最新消息</a>！</dd>
-				</dl>
-				<dl class="topUpdateInfoList">
-					<dt>2014年6月28日</dt>
-					<dd>编写完成了掀桌小组组员的介绍。</dd>
-					<dd><a href="/member.html">成员介绍</a>页面可以进入了！</dd>
-				</dl>
-				<dl class="topUpdateInfoList">
-					<dt>2014年6月27日</dt>
-					<dd>增加了<a href="/about.html">关于掀桌</a>网站的介绍页面。</dd>
-				</dl>
-				<dl class="topUpdateInfoList">
-					<dt>2014年6月22日</dt>
-					<dd>掀桌游戏的网站框架架构完成！</dd>
-					<dd><a href="/index.html" title="返回主页">掀桌主页</a>制作完成。</dd>
-					<dd>即日起可以浏览啦！</dd>
-				</dl>
-				<dl class="topUpdateInfoList">
-					<dt>2014年6月10日</dt>
-					<dd><a href="/index.html" title="返回主页">掀桌游戏</a>主页初步设计完成。</dd>
-					<dd>游戏主页构思完成，文本文件生成。</dd>
-				</dl>
+                <quick-news v-for="(ele,key) in newsList" :key="key" :isNew="key==0?true:false" :QNews="ele"/>
             </div>
             <div id="indexSnsInfo">
                 <div>twitter</div>
@@ -103,19 +69,32 @@
 
 <script>
 import '../style/index.scss';
+import QuickNews from '@components/QuickNews.vue';
 export default {
     name: 'Index',
     data(){
         return {
-
+            newsList: []
         }
+    },
+    created(){
+        this.getNewsList();
+    },
+    methods:{
+        getNewsList(){
+            this.$http.get("//api.liantui.xyz/main/news").then((response)=>{
+                this.newsList = response.data;
+            });
+        }
+    },
+    components:{
+        QuickNews
     }
-
 }
 </script>
 
 <style lang="scss">
-    .floatsu{
+    .floatsu {
         position: fixed;
         right: 20px;
         bottom: 20px;

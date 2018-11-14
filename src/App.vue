@@ -3,14 +3,6 @@
     <header :class="['naviTop',uraSite?'urabg':'normalbg']">
         <router-link :to="'/'" class="naviTitle">(╯‵□′)╯︵┻━┻</router-link>
         <div class="topContent">
-            <!--aplayer autoplay
-  :music="{
-    title: 'secret base~君がくれたもの~',
-    artist: 'Silent Siren',
-    src: 'https://moeplayer.b0.upaiyun.com/aplayer/secretbase.mp3',
-    pic: 'https://moeplayer.b0.upaiyun.com/aplayer/secretbase.jpg'
-  }"
-/-->
             <div class="topFunction">
                 <label for="sideswitch" class="topFuncBtn clearfix">
                     <span>{{ sideHide?"显":"隐" }}</span>
@@ -111,14 +103,17 @@
     <div :class="['mainContent', sideHide?'wide':'']">
         <div id="mainBG" ref="mainbg"/>
         <router-view style="height:auto;display:block;" ></router-view>
-        <div class="whitebox copyright">
-            <a class="hosting" href="//futa.moe">
-                <i aria-hidden="true" class="far fa-heart"></i> Hosted by Conoha
-                <span class="link">//liantui.xyz</span>
-            </a>
-            <div>
-                Copyright © 2012-2018 MIAO, Lucky. Illustrations have their own licenses.
+        <div class="siteFooter">
+            <div class="hosting">
+                Hosted by <a href="https://www.conoha.jp/">Conoha</a>.
+                <span class="link">
+                    <a href="//liantui.xyz/">liantui.xyz</a>
+                </span>
+                <span class="link">
+                    <a href="//liantui.moe/">liantui.moe</a>
+                </span>
             </div>
+            <div class="copyright">Copyright © 2012-2018 MIAO, Lucky. Illustrations have their own licenses.</div>
         </div>
     </div>
 </div>
@@ -164,6 +159,7 @@ export default {
     },
     mounted(){
         this.audio = document.getElementById("myAudio");
+        this.audio.volume = 0.2;
         this.audio.addEventListener('timeupdate', this.onAudioTimeUpdate);
         this.audio.addEventListener('progress', this.onAudioProgress);  
         this.audio.addEventListener('durationchange', this.onAudioDurationChange);        
@@ -310,9 +306,28 @@ export default {
             margin-left: 0;
         }
 
-        .copyright{
-            //position: absolute;
-            bottom: 0;
+        .siteFooter {
+            position: relative;
+            //width: 100%;
+            //height: auto;
+            padding: 10px 20px 40px 20px;
+            background: rgba(255, 255, 255, 0.8);
+            a {
+                color: #69F;
+                text-decoration: none;
+            }
+            .hosting {
+                display: inline-block;
+                width: 30%;
+                .link {
+                    margin-left: 20px;
+                    text-decoration: underline;
+                }
+            }
+            
+            .copyright {
+                float: right;
+            }
         }
     }
 }

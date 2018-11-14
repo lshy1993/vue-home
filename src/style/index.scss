@@ -8,7 +8,6 @@
     #indexPostBig {
         position: relative;
         padding: 0 200px;
-        
         text-shadow: 4px 3px 2px grey;
 
         p {
@@ -43,12 +42,93 @@
     display: block;
     margin-top: 10px;
     
-    .naviBlock{
-        background: #69F;
-        margin: 5px;
-        width: 30%;
+    //项目点击块
+    .naviBlock {
+        position: relative;
+        display: inline-block;
+        width: calc(33% - 10px);
         height: 200px;
-        border-radius: 20px;
+        margin: 5px;
+
+        &:hover {
+            .movingBg {
+                transform: scale(1.05);
+            }
+            .blockWrap {
+                padding-top: 30px !important;
+
+                .blockSummary {
+                    margin-top: 30px;
+                    opacity: 1;
+                }
+                .line {
+                    opacity: 1;
+                }
+                .blockFoot {
+                    opacity: 1;
+                }
+            }
+            
+        }
+
+        .blockBg {
+            position: relative;
+            overflow: hidden;
+            border-radius: 5px;
+
+            &,>.movingBg {
+                width: 100%;
+                height: 100%;
+                transition: all .2s;
+            }
+
+            .movingBg {
+                background-position: left;
+            }
+        }
+
+        .blockWrap {
+            position: absolute;
+            height: 200px;
+            width: 100%;
+            box-sizing: border-box;
+            padding: 70px 20px 0 20px!important;
+            background-color: rgba(0,0,0,.3);
+            border-radius: 5px;
+            color: #fff !important;
+            text-align: center;
+
+            &,>*{
+                transition: all .3s;
+            }
+
+            h2 {
+                font-size: 28px;
+            }
+            .blockSummary {
+                min-height: 40px;
+                margin-top: 10px;
+                overflow: hidden;
+                opacity: 0;
+            }
+            .line {
+                height: 2px;
+                margin: 10px 0;
+                border-bottom: 1px solid #dee5e7;
+                opacity: 0;
+            }
+            .blockFoot {
+                opacity: 0;
+            }
+
+            a {
+                position: absolute;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                right: 0;
+            }
+        }
     }
 }
 
@@ -79,34 +159,8 @@
         width: 60%;
         left: 0;
         background: rgba(0, 0, 0, 0.6);
-        overflow-y: scroll;
+        overflow-y: auto;
 
-        .topUpdateInfoList {
-            font-size: 14px;
-            text-align: left;
-            margin-top: 15px;
-            padding-left: 0 40px;
-            
-            dt {
-                float: left;
-                padding-left: 25px;
-            }
-            
-            .new {
-                background: url(/static/images/new.png) no-repeat 0 2px;
-            }
-    
-            dd {
-                margin: 0 0 0 130px;
-                padding-right: 35px;
-                padding-bottom: 8px;
-                /*line-height: 1.8em;*/
-                a { color: #69F; }
-                a:hover { text-decoration: underline; }
-    
-            }
-            
-        }
     }
 
 }
@@ -125,12 +179,12 @@
     bottom: 50px;
 }
 
-	.browse {
-		width: 30px;
-		height: 70px;
-		display: block;
-		cursor: pointer;
-    }
+.browse {
+    width: 30px;
+    height: 70px;
+    display: block;
+    cursor: pointer;
+}
     
 
 	
