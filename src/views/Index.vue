@@ -91,7 +91,7 @@
 				</dl>
             </div>
             <div id="indexSnsInfo">
-                twitter
+                <div>twitter</div>
             </div>
         </div>
         <div class="floatSu">
