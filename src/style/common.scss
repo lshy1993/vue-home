@@ -33,9 +33,11 @@ body {
     }
 
     .inset-container {
+        position: relative;
         margin: 0 auto;
         max-width: 64em;
         min-height: 100%;
+        height: auto;
     }
     
     /*超链接无下划线*/

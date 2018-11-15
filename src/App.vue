@@ -67,8 +67,8 @@
                     </div>
                     <div class="motto">我永远喜欢くすはらゆい</div>
                 </div>
-                <div class="line"></div>
-                <mini-player :musictitle="music.title" :audioStatus="aStatus" />
+                <div v-if="!uraSite" class="line"></div>
+                <mini-player v-if="!uraSite" :musictitle="music.title" :audioStatus="aStatus" />
                 <div class="line"></div>
                 <div class="userMiddle">
                     <div class="hintText">
@@ -99,13 +99,13 @@
         </div>
     </aside>
     <audio id="myAudio" :src="music.src" loop="loop" autoplay="autoplay"/>
-    <foot-player v-if="audioControlOn" :music="music" :audioStatus="aStatus"/>
+    <foot-player v-if="uraSite" :music="music" :audioStatus="aStatus"/>
     <div class="loginDiv" @click="showLogin" v-if="loginOn">
         <login/>
     </div>
     <div :class="['mainContent', sideHide?'wide':'']">
         <div id="mainBG" :class="[sideHide?'wide':'']" ref="mainbg"/>
-        <router-view style="height:auto;display:block;" ></router-view>
+        <router-view style="height:auto;display:block;" />
         <div class="siteFooter">
             <div class="hosting">
                 Hosted by <a href="https://www.conoha.jp/">Conoha</a>.
@@ -141,7 +141,6 @@ export default {
             langs: this.Common.langs,
             uraSite: true,
             setting: false,
-            audioControlOn: false,
             loginOn: false,
             nextPath: '',
             aStatus: {
@@ -149,6 +148,7 @@ export default {
                 loadedTime: 0,
                 duration: 0,
                 volume: 0,
+                controlOn: false,
                 isMuted: false
             },
             music: {
@@ -197,7 +197,7 @@ export default {
             this.setting = !this.setting;
         },
         showPlayer: function(){
-            this.audioControlOn = !this.audioControlOn;
+            this.aStatus.controlOn = !this.aStatus.controlOn;
         },
         onAudioTimeUpdate(){
             this.aStatus.playedTime = this.audio.currentTime;
