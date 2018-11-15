@@ -99,5 +99,6 @@ export default {
         right: 20px;
         bottom: 20px;
         width: 200px;
+        z-index: 1010;
     }
 </style>

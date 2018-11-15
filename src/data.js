@@ -31,21 +31,6 @@ var naviTopBtn = [
     }
 ];
 
-var sideJump = [
-    {
-        to: "",
-        txt: "pcrWiki"
-    },
-    {
-        to: "",
-        txt: "eroWiki"
-    },
-    {
-        to: "",
-        txt: "Blog"
-    },
-];
-
 var sideList = [
     {
         to: "/news",
@@ -281,7 +266,6 @@ var admin = false;
 export default{
     langs,
     naviTopBtn,
-    sideJump,
     sideList,
     snsList,
     gameIdList,

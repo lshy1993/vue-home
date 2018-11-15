@@ -24,7 +24,7 @@ const i18n = new VueI18n({
 
 //样式表
 import './style/common.scss';
-import './style/old.scss';
+//import './style/old.scss';
 import './style/transition.scss';
 
 //静态数据与方法

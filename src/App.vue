@@ -14,18 +14,16 @@
                 </label>
                 <div class="devBtnWarp clearfix" v-if="uraSite">
                     <div class="devBtn">
-                        <div class="topFuncBtn">
+                        <div @click="changeBG" class="topFuncBtn">
                             <div class="hidehover">{{ $t('backimg') }}</div>
                             <div class="thumbframe">
-                                <div :style="{'line-height':'20px'}">
+                                <!--div :style="{'line-height':'20px'}">
                                     <small>{{　$t('next') }}{{ countDown }}</small>
-                                </div>
+                                </div-->
                                 <img class="thumb" :style="{'backgroundImage':nextPath}" />
                             </div>
                         </div>
-                        <div class="topFuncBtn">
-                            <div class="hidehover">言语</div>
-                        </div>
+                        <div @click="showPlayer" class="topFuncBtn">BGM</div>
                         <div class="topFuncBtn">访问量</div>
                         <div class="topFuncBtn">RSS</div>
                     </div>
@@ -63,6 +61,7 @@
                 <div class="userHead">
                     <div class="avatar">
                         <span>
+                            <!--div :style="{ backgroundImage: uraSite?'url(/static/images/head-r.jpg)':'url(/static/images/head.jpg)'}" class="avatar-large" /-->
                             <img class="avatar-large" :src="[uraSite?'static/images/head-r.jpg':'static/images/head.jpg']" />
                         </span>
                     </div>
@@ -76,8 +75,14 @@
                         <span>导航站</span>
                     </div>
                     <div class="naviSquareBox clearfixbox">
-                        <div class="naviSquare clearfix" v-for="(ele,key) in sideJump" :key="key">
-                            <a :title="ele.txt" :href="ele.to">{{ ele.txt }}</a>
+                        <div class="naviSquare clearfix">
+                            <a title="PcrWiki" href="//pcrwiki.liantui.xyz">PW</a>
+                        </div>
+                        <div class="naviSquare clearfix">
+                            <a title="GalWiki" href="/">GW</a>
+                        </div>
+                        <div class="naviSquare clearfix">
+                            <a title="Blog" href="//blog.liantui.xyz">Blog</a>
                         </div>
                     </div>
                 </div>
@@ -94,14 +99,12 @@
         </div>
     </aside>
     <audio id="myAudio" :src="music.src" loop="loop" autoplay="autoplay"/>
-    <div v-if="uraSite" class="siteFoot">
-        <foot-player :audioStatus="aStatus"/>
-    </div>
+    <foot-player v-if="audioControlOn" :music="music" :audioStatus="aStatus"/>
     <div class="loginDiv" @click="showLogin" v-if="loginOn">
         <login/>
     </div>
     <div :class="['mainContent', sideHide?'wide':'']">
-        <div id="mainBG" ref="mainbg"/>
+        <div id="mainBG" :class="[sideHide?'wide':'']" ref="mainbg"/>
         <router-view style="height:auto;display:block;" ></router-view>
         <div class="siteFooter">
             <div class="hosting">
@@ -131,25 +134,24 @@ export default {
     data(){
         return {
             naviBtn: this.Common.naviTopBtn,
-            sideJump: this.Common.sideJump,
+            //sideJump: this.Common.sideJump,
             sideList: this.Common.sideList,
             sideHide: this.Common.sideHide,
             //uraSite: this.Common.uraSite,
             langs: this.Common.langs,
             uraSite: true,
             setting: false,
+            audioControlOn: false,
             loginOn: false,
             nextPath: '',
-            countDown: 30,
-            timer: Object,
-            aStatus:{
+            aStatus: {
                 playedTime: 0,
                 loadedTime: 0,
                 duration: 0,
                 volume: 0,
                 isMuted: false
             },
-            music:{
+            music: {
                 title: 'secret base~君がくれたもの~',
                 artist: 'Silent Siren',
                 src: '//liantui.xyz/static/audio/shuihuq.mp3',
@@ -164,11 +166,8 @@ export default {
         this.audio.addEventListener('progress', this.onAudioProgress);  
         this.audio.addEventListener('durationchange', this.onAudioDurationChange);        
         this.audio.addEventListener('volumechange', this.onAudioVolumeChange)
-
+        this.nextPath = this.Func.ranBG();
         //clearInterval(this.timer);
-        //this.$refs.mainbg.style.backgroundImage = this.Func.ranBG();
-        //this.nextPath = this.Func.ranBG();
-
         //var _self = this;
         // this.timer = setInterval(()=>{
         //     if(_self.countDown == 0){
@@ -179,13 +178,16 @@ export default {
         //     }else{
         //         _self.countDown--;
         //     }
-            
         // }, 1000);
     },
     beforeRouteEnter (to, from, next) {
-        //next();
+        next();
     },
     methods: {
+        changeBG(){
+            this.$refs.mainbg.style.backgroundImage = this.nextPath;
+            this.nextPath = this.Func.ranBG();
+        },
         showLogin: function(){
             this.loginOn = !this.loginOn;
             //document.body.style.overflow = this.loginOn?"hidden":"auto";
@@ -193,6 +195,9 @@ export default {
         },
         showLang: function(){
             this.setting = !this.setting;
+        },
+        showPlayer: function(){
+            this.audioControlOn = !this.audioControlOn;
         },
         onAudioTimeUpdate(){
             this.aStatus.playedTime = this.audio.currentTime;
@@ -228,107 +233,5 @@ export default {
 #app {
     width: 100%;
     //height: 100%;
-    
-    #mainBG {
-        background-image: url(/static/images/bg_Halloween.jpg);
-        background-size: cover;
-        background-position: right bottom;
-        background-repeat: no-repeat;
-        position: fixed;
-        z-index: -1;
-        top: 50px;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        transition: all 2s ease-in-out;
-    }
-
-    .thumb {
-        width: 320px;
-        height: 180px;
-        background-size: 320px 180px;
-    }
-
-    .thumbframe {
-        cursor: default;
-    }
-
-    .hidehover + .thumbframe {
-        position: fixed;
-        text-align: center;
-        background: #2e3243;
-        transition: all .3s;
-        opacity: 0;
-    }
-    .hidehover:hover + .thumbframe {
-        opacity: 1;
-    }
-
-    .localechanger {
-        position: fixed;
-        text-align: center;
-        background: #2e3243;
-        padding: 10px;
-
-        .localehint {
-            display: block;
-            //line-height: 0;
-            font-size: 12px;
-            margin-bottom: 5px;
-        }
-    }
-
-    .loginDiv {
-        position: fixed;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content:center;
-        align-items:center;
-        background:rgba(0,0,0,.4);
-        z-index: 1020;
-    }
-
-    .mainContent {
-        //position: relative;
-        //min-height: 100%;
-        //height: 100% auto !important;
-        //height: 100%;
-        margin-left: 200px;        
-        padding-top: 50px;
-        transition: all .3s;
-        z-index: 1000;
-
-        &.wide {
-            margin-left: 0;
-        }
-
-        .siteFooter {
-            position: relative;
-            //width: 100%;
-            //height: auto;
-            padding: 10px 20px 40px 20px;
-            background: rgba(255, 255, 255, 0.8);
-            a {
-                color: #69F;
-                text-decoration: none;
-            }
-            .hosting {
-                display: inline-block;
-                width: 30%;
-                .link {
-                    margin-left: 20px;
-                    text-decoration: underline;
-                }
-            }
-            
-            .copyright {
-                float: right;
-            }
-        }
-    }
 }
 </style>

@@ -1,6 +1,10 @@
 <template>
 <div>
     <div class="inset-container">
+        <header class="pagehead">
+            <h1>咕咕咕们</h1>
+            <small>鸽子合照！没注意</small>
+        </header>
         <article class="section whitebox header">
             <h3>掀桌组</h3>
             <aside>

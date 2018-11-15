@@ -1,6 +1,10 @@
 <template>
 <div>
     <div class="inset-container">
+        <header class="pagehead">
+            <h1>广告位</h1>
+            <small>虚位以待！欢迎联系！</small>
+        </header>
         <article class="section whitebox">
             <h3>亲密伙伴们</h3>
             <aside>

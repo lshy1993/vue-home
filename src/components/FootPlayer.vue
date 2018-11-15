@@ -1,16 +1,21 @@
 <template>
 <div id="footPlayer">
     <div @click="clickBar" class="playButton">stop</div>
-    <div @mousedown="onMouseDown" ref="barWrap" class="progressBack">
-        <div class="progressFore" :style="'width:'+playProgress*100+'%'" />
-        <div class="bufferFore" :style="'width:'+loadProgress*100+'%'" />
+    <div class="middlePart">
+        <div>{{ music.title }}</div>
     </div>
-    <div class="timeText">
-        <span>{{ changeTime(audioStatus.playedTime) }}</span>/
-        <span>{{ changeTime(audioStatus.duration) }}</span>
-    </div>
-    <div @mousedown="onVolumeMouseDown" ref="volumeWrap" class="volumeBar">
-        <div class="volumeFore" :style="'width:'+audioStatus.volume*100+'%'" />
+    <div>
+        <div @mousedown="onMouseDown" ref="barWrap" class="progressBack">
+            <div class="progressFore" :style="'width:'+playProgress*100+'%'" />
+            <div class="bufferFore" :style="'width:'+loadProgress*100+'%'" />
+        </div>
+        <div class="timeText">
+            <span>{{ changeTime(audioStatus.playedTime) }}</span>/
+            <span>{{ changeTime(audioStatus.duration) }}</span>
+        </div>
+        <div @mousedown="onVolumeMouseDown" ref="volumeWrap" class="volumeBar">
+            <div class="volumeFore" :style="'width:'+audioStatus.volume*100+'%'" />
+        </div>
     </div>
     <div v-if="false">
         <ul>1</ul>
@@ -23,7 +28,7 @@
 import moment from 'moment';
 export default {
     name: 'FootPlayer',
-    props: ['audioStatus'],
+    props: ['music','audioStatus'],
     data(){
         return {
             audio: Object
@@ -117,21 +122,40 @@ export default {
 </script>
 
 <style lang="scss">
-#footPlayer{
+#footPlayer {
+    user-select: none;
+    position: fixed;
+    height: 50px;
+    width: 100%;
+    bottom: 0;
     padding-left: 200px;
-    
+    padding-top: 10px;
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    z-index: 1008;
+
     .playButton{
         display: inline-block;
-        width: 10%;
+        height: 40px;
+        width: 40px;
+        //width: 10%;
+        margin-left: 10px;
+        border: 1px solid white;
     }
-    .progressBack{
+    .middlePart{
+        position: relative;
         display: inline-block;
         width: 60%;
+    }
+    .progressBack {
         position: relative;
-        height: 20px;
+        display: block;
+        height: 10px;
+        
+        margin-left: 20px; 
         background: white;
 
-        .progressFore{
+        .progressFore {
             z-index: 1003;
             position: absolute;
             background: rgb(65, 184, 131);

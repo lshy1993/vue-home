@@ -1,6 +1,10 @@
 <template>
 <div>
     <div class="inset-container">
+        <header class="pagehead">
+            <h1>周边</h1>
+            <small>求包养！原创不易</small>
+        </header>
         <article class="section whitebox">
             <h2 class="caption">Gallery</h2>
             <div class="clearfixbox">

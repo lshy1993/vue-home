@@ -17,7 +17,7 @@
         </h1>
         <h1 class="greeting jp">
             <small class="prefix">こんにちは、</small>
-            <span class="name no-wrap">ルキ
+            <span class="name no-wrap">ミアオ
             <span class="face">de-su(&lt;ゝω·) ~☆</span>
             </span>
         </h1>

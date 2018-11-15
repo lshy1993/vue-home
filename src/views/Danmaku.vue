@@ -5,7 +5,7 @@
             <h1>弹幕留言</h1>
             <small>前方高能</small>
         </header>
-        <ol>
+        <transition-group name="fade" tag="ol">
             <li class="section comentbox" v-for="(ele,key) in commentList" :key="key">
                 <a class="usericon"><img class="icon48" src=""></a>
                     <div class="inline">
@@ -17,7 +17,7 @@
                         <small>{{ ele.OS }}</small>
                     </div>
             </li>
-        </ol>
+        </transition-group>
     </div>
     <div>
         发送弹幕

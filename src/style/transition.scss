@@ -1,9 +1,9 @@
 .fade-enter-active, .fade-leave-active {
-    //transition: opacity .2s;
-}
-.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
-    //opacity: 0;
-}
+    transition: opacity .5s;
+  }
+  .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+    opacity: 0;
+  }
 
 .width-toggle-enter-active, .width-toggle-leave-active {
     transition: width .5s;
@@ -21,3 +21,4 @@
 .ml-toggle-enter, .ml-toggle-leave-to /* .fade-leave-active below version 2.1.8 */ {
     margin-left: 0;
 }
+
