@@ -13,7 +13,7 @@
                 </span>
             </h2>
             <ul>
-                <li><a href="//pcrwiki.liantui.xyz" target="_blank">PcrWiki</a></li>
+                <li><a href="//pcrwiki.liantui.moe" target="_blank">PcrWiki</a></li>
                 <li>之前入坑公主<span class="heimu">母猪</span>链接后，某一日拆游戏的包，找到了数据库文件。</li>
                 <li>一发不可收拾，开始了解析内容，并尝试利用vue.js框架，写了一个简单的wiki</li>
             </ul>

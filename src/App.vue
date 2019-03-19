@@ -23,7 +23,7 @@
                                 <img class="thumb" :style="{'backgroundImage':nextPath}" />
                             </div>
                         </div>
-                        <div @click="showPlayer" class="topFuncBtn">BGM</div>
+                        <div @click="musicOn=!musicOn" class="topFuncBtn">BGM</div>
                         <div class="topFuncBtn">访问量</div>
                         <div class="topFuncBtn">RSS</div>
                     </div>
@@ -76,13 +76,13 @@
                     </div>
                     <div class="naviSquareBox clearfixbox">
                         <div class="naviSquare clearfix">
-                            <a title="PcrWiki" href="//pcrwiki.liantui.xyz">PW</a>
+                            <a title="PcrWiki" href="//pcrwiki.liantui.moe">PW</a>
                         </div>
                         <div class="naviSquare clearfix">
                             <a title="GalWiki" href="/">GW</a>
                         </div>
                         <div class="naviSquare clearfix">
-                            <a title="Blog" href="//blog.liantui.xyz">Blog</a>
+                            <a title="Blog" href="//blog.liantui.moe">Blog</a>
                         </div>
                     </div>
                 </div>
@@ -99,7 +99,7 @@
         </div>
     </aside>
     <audio id="myAudio" :src="music.src" loop="loop" autoplay="autoplay"/>
-    <foot-player v-if="uraSite" :music="music" :audioStatus="aStatus"/>
+    <foot-player v-if="musicOn & uraSite" :music="music" :audioStatus="aStatus"/>
     <div class="loginDiv" @click="showLogin" v-if="loginOn">
         <login/>
     </div>
@@ -110,10 +110,10 @@
             <div class="hosting">
                 Hosted by <a href="https://www.conoha.jp/">Conoha</a>.
                 <span class="link">
-                    <a href="//liantui.xyz/">liantui.xyz</a>
+                    <a href="http://liantui.xyz/">liantui.xyz</a>
                 </span>
                 <span class="link">
-                    <a href="//liantui.moe/">liantui.moe</a>
+                    <a href="https://liantui.moe/">liantui.moe</a>
                 </span>
             </div>
             <div class="copyright">Copyright © 2012-2018 MIAO, Lucky. Illustrations have their own licenses.</div>
@@ -137,9 +137,9 @@ export default {
             //sideJump: this.Common.sideJump,
             sideList: this.Common.sideList,
             sideHide: this.Common.sideHide,
-            //uraSite: this.Common.uraSite,
+            uraSite: this.Common.uraSite,
             langs: this.Common.langs,
-            uraSite: true,
+            musicOn: false,
             setting: false,
             loginOn: false,
             nextPath: '',
@@ -154,7 +154,7 @@ export default {
             music: {
                 title: 'secret base~君がくれたもの~',
                 artist: 'Silent Siren',
-                src: '//liantui.xyz/static/audio/shuihuq.mp3',
+                src: '//liantui.moe/static/audio/shuihuq.mp3',
                 pic: 'https://moeplayer.b0.upaiyun.com/aplayer/secretbase.jpg'
             }
         }
@@ -195,9 +195,6 @@ export default {
         },
         showLang: function(){
             this.setting = !this.setting;
-        },
-        showPlayer: function(){
-            this.aStatus.controlOn = !this.aStatus.controlOn;
         },
         onAudioTimeUpdate(){
             this.aStatus.playedTime = this.audio.currentTime;

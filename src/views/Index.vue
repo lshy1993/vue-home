@@ -28,7 +28,7 @@
         </div>
         <div class="naviBlock clearfixbox">
             <div class="blockBg clearfix">
-                <div class="movingBg" style="background-image:url(/static/images/still_unit_100131.png)" />
+                <div class="movingBg" style="background-image:url(/static/images/still_unit_102031.png)" />
             </div>
             <div class="blockWrap clearfix">
                 <h2>恋爱与推理</h2>
@@ -40,7 +40,7 @@
         </div>
         <div class="naviBlock clearfixbox">
             <div class="blockBg clearfix">
-                <div class="movingBg" style="background-image:url(/static/images/still_unit_100131.png)" />
+                <div class="movingBg" style="background-image:url(/static/images/still_unit_107831.png)" />
             </div>
             <div class="blockWrap clearfix">
                 <h2>时间轮回的终点</h2>
@@ -84,7 +84,7 @@ export default {
     },
     methods:{
         getNewsList(){
-            this.$http.get("//api.liantui.xyz/main/news").then((response)=>{
+            this.$http.get("//api.liantui.moe/main/news").then((response)=>{
                 this.newsList = response.data;
             });
         }

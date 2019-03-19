@@ -12,7 +12,7 @@
             <div @click="clickBar" class="playButton">{{ this.audio.paused?'play':'pause' }}</div>
         </div>
         <div class="rightPart">
-            <div>{{ music.title }}</div>
+            <div @click="showPlayer">{{ music.title }}</div>
             <div style="display:block;">
                 <div @mousedown="onMouseDown" ref="barWrap" class="progressBack">
                     <div class="progressFore" :style="'width:'+playProgress*100+'%'" />
@@ -60,6 +60,9 @@ export default {
             }else{
                 this.audio.pause();
             }
+        },
+        showPlayer: function(){
+            this.audioStatus.controlOn = !this.audioStatus.controlOn;
         },
         onMouseDown (e) {
             const barWidth = this.$refs.barWrap.clientWidth;
