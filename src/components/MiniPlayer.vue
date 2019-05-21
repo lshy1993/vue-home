@@ -1,5 +1,6 @@
 <template>
 <div id="miniPlayer">
+    <div @click="clickBar" class="pauseDiv">{{ audio.paused?'play':'pause' }}</div>
     <div @mousedown="onMiniMouseDown" ref="miniBar" class="progressBack">
         <div class="progressFore" :style="'width:'+playProgress*100+'%'"></div>
         <div class="bufferFore" :style="'width:'+loadProgress*100+'%'"></div>
@@ -83,7 +84,9 @@ export default {
 #miniPlayer{
     margin-left: 5px;
     width: 190px;
-
+    .pauseDiv{
+        margin: auto;
+    }
     .progressBack{
         position: relative;
         height: 20px;

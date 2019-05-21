@@ -76,13 +76,16 @@
                     </div>
                     <div class="naviSquareBox clearfixbox">
                         <div class="naviSquare clearfix">
-                            <a title="PcrWiki" href="//pcrwiki.liantui.moe">PW</a>
+                            <a title="PcrWiki" href="https://pcrwiki.liantui.moe">PW</a>
+                        </div>
+                        <div class="naviSquare clearfix">
+                            <a title="AlphaSoul" href="https://alphasoul.liantui.moe">AS</a>
                         </div>
                         <div class="naviSquare clearfix">
                             <a title="GalWiki" href="/">GW</a>
                         </div>
                         <div class="naviSquare clearfix">
-                            <a title="Blog" href="//blog.liantui.moe">Blog</a>
+                            <a title="Blog" href="https://blog.liantui.moe">Blog</a>
                         </div>
                     </div>
                 </div>
@@ -105,7 +108,9 @@
     </div>
     <div :class="['mainContent', sideHide?'wide':'']">
         <div id="mainBG" :class="[sideHide?'wide':'']" ref="mainbg"/>
-        <router-view style="height:auto;display:block;" />
+        <transition name="fade">
+            <router-view style="height:auto;display:block;" />
+        </transition>
         <div class="siteFooter">
             <div class="hosting">
                 Hosted by <a href="https://www.conoha.jp/">Conoha</a>.
@@ -133,6 +138,7 @@ export default {
     name: 'app',
     data(){
         return {
+            isRouterAlive: true,
             naviBtn: this.Common.naviTopBtn,
             //sideJump: this.Common.sideJump,
             sideList: this.Common.sideList,
@@ -230,5 +236,15 @@ export default {
 #app {
     width: 100%;
     //height: 100%;
+}
+.fade-enter-active, .fade-leave-active {
+    transition: opacity .5s;
+    transition-timing-function: ease-in-out;
+}
+.fade-enter, .fade-leave-to {
+    opacity: 0;
+}
+.fade-enter-to, .fade-leave {
+    opacity: 1;
 }
 </style>

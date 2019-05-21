@@ -269,7 +269,7 @@ export default{
     sideList,
     snsList,
     gameIdList,
-    newsList,
+    // newsList,
     stateCheckList,
     uraSite,
     sideHide,

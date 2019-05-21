@@ -43,9 +43,10 @@ export default {
                 used: 0,
                 ratio: 0
             },
+            serverCpu: {},
             date: [],
             mems: [],
-            cpus: [],
+            cpus: [[],[],[],[]],
             option_mem: chartOpt.option_mem,
             option_cpu: chartOpt.option_cpu
         }
@@ -75,7 +76,7 @@ export default {
             }
             this.date.push([now.getHours(), now.getMinutes(), now.getSeconds()].join(':'));
 
-            this.$http.get("//localhost:3000/status/mem").then((response)=>{
+            this.$http.get("https://api.liantui.moe/status/mem").then((response)=>{
                 this.serverMem = response.data;
                 if(this.mems.length >= 30){
                     this.mems.shift();
@@ -83,12 +84,22 @@ export default {
                 this.mems.push(response.data.ratio);
                 this.setMemBar();
             });
-            this.$http.get("//localhost:3000/status/cpus").then((response)=>{
-                this.serverCpu = response.data;
-                if(this.cpus.length >= 30){
-                    this.cpus.shift();
+            this.$http.get("https://api.liantui.moe/status/cpus").then((response)=>{
+                let cpus = response.data;
+                for(var i = 0, len = cpus.length; i < len; i++) {
+                    var cpu = cpus[i], total = 0;
+                    for(var type in cpu.times) {
+                        total += cpu.times[type];
+                    }
+                    // for(type in cpu.times) {
+                    //     console.log("\t", type, Math.round(100 * cpu.times[type] / total));
+                    // }
+                    let ratio = Math.round(100 * cpu.times.idle / total);
+                    if(this.cpus[i].length >= 30){
+                        this.cpus[i].shift();
+                    }
+                    this.cpus[i].push(ratio);
                 }
-                this.cpus.push(response.data.ratio);
                 this.setCpuBar();
             });
         },
@@ -97,7 +108,7 @@ export default {
             this.option_mem.xAxis.data = this.date;
         },
         setCpuBar: function(){
-            this.option_cpu.series[0].data = this.mems;
+            this.option_cpu.series[0].data = this.cpus[0];
             this.option_cpu.xAxis.data = this.date;
         }
 

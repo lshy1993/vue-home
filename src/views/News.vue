@@ -36,7 +36,7 @@ export default {
     },
     methods:{
         getNewsList(){
-            this.$http.get("//api.liantui.moe/main/news").then((response)=>{
+            this.$http.get("https://api.liantui.moe/main/news").then((response)=>{
                 this.newsList = response.data;
             });
         },
