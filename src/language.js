@@ -1,6 +1,7 @@
 export const lq = {
     zh: {
         login: "登陆",
+        logout: "登出",
         dev: "开发",
         backimg: "背景图",
         next: "下一张 倒计时：",
@@ -22,6 +23,7 @@ export const lq = {
     },
     ja: {
         login: "ログイン",
+        logout: " ログアウト",
         dev: "開発",
         backimg: "背景図",
         next: "次の図 あと：",

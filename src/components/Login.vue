@@ -8,7 +8,7 @@
         </div>
         <div class="inputLine">
             <label for="login-pwd">PassWord</label>
-            <input id="login-pwd" type="password" v-model="loginData.password" :placeholder="loginHint.pwd" autocomplete="on">
+            <input id="login-pwd" type="password" v-model="loginData.password" :placeholder="loginHint.pwd" autocomplete="on" @keyup.enter="handleLogin(loginData)">
             <span class="errMsg">{{ loginErrMsg.pwd }}</span>
         </div>
         <button type="button" class="btn-primary clickable" @click="handleLogin(loginData)">
@@ -41,13 +41,16 @@ export default {
     },
     methods:{
         handleLogin: function(loginData){
-            //console.log(loginData);
+            
             if(!loginData.name){
                 this.loginErrMsg.user = "用户名不能为空";
             }
             if(!loginData.password){
                 this.loginErrMsg.pwd = "请输入密码";
             }
+            console.log(loginData);
+            // 验证后emit回上级
+            this.$emit('login',this.loginData);
         }
     }
 }

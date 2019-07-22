@@ -49,8 +49,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="naviButton clearfix clickable" @click="showLogin">
-                    <span class="naviTxt">{{ $t("login") }}</span>
+                <div class="naviButton clearfix clickable" @click="userLogined?logOut():showLoginBox()">
+                    <span class="naviTxt">{{ userLogined?$t("logout"):$t("login") }}</span>
                 </div>
             </div>
         </div>
@@ -59,13 +59,13 @@
         <div :class="['naviWrap',sideHide?'wide':'']">
             <div class="naviContent">
                 <div class="userHead">
-                    <div class="avatar">
+                    <div class="avatar" @click="openDashBoard">
                         <span>
                             <!--div :style="{ backgroundImage: uraSite?'url(/static/images/head-r.jpg)':'url(/static/images/head.jpg)'}" class="avatar-large" /-->
                             <img class="avatar-large" :src="[uraSite?'static/images/head-r.jpg':'static/images/head.jpg']" />
                         </span>
                     </div>
-                    <div class="motto">我永远喜欢くすはらゆい</div>
+                    <div class="motto">{{ userLogined ? "欢迎回来":"我永远喜欢くすはらゆい" }}</div>
                 </div>
                 <div v-if="!uraSite" class="line"></div>
                 <mini-player v-if="!uraSite" :musictitle="music.title" :audioStatus="aStatus" />
@@ -103,8 +103,8 @@
     </aside>
     <audio id="myAudio" :src="music.src" loop="loop" autoplay="autoplay"/>
     <foot-player v-if="musicOn & uraSite" :music="music" :audioStatus="aStatus"/>
-    <div class="loginDiv" @click="showLogin" v-if="loginOn">
-        <login/>
+    <div v-if="loginOn & !userLogined" class="loginDiv" @click="showLoginBox">
+        <login @login="logIn"/>
     </div>
     <div :class="['mainContent', sideHide?'wide':'']">
         <div id="mainBG" :class="[sideHide?'wide':'']" ref="mainbg"/>
@@ -114,9 +114,9 @@
         <div class="siteFooter">
             <div class="hosting">
                 Hosted by <a href="https://www.conoha.jp/">Conoha</a>.
-                <span class="link">
+                <!--span class="link">
                     <a href="http://liantui.xyz/">liantui.xyz</a>
-                </span>
+                </span-->
                 <span class="link">
                     <a href="https://liantui.moe/">liantui.moe</a>
                 </span>
@@ -148,6 +148,7 @@ export default {
             musicOn: false,
             setting: false,
             loginOn: false,
+            userLogined: false,
             nextPath: '',
             aStatus: {
                 playedTime: 0,
@@ -194,10 +195,21 @@ export default {
             this.$refs.mainbg.style.backgroundImage = this.nextPath;
             this.nextPath = this.Func.ranBG();
         },
-        showLogin: function(){
+        showLoginBox: function(){
             this.loginOn = !this.loginOn;
             //document.body.style.overflow = this.loginOn?"hidden":"auto";
             document.body.classList = [this.loginOn?"hideScroll":""];
+        },
+        logIn: function(){
+            this.loginOn = false;
+            this.userLogined = true;
+        },
+        logOut: function(){
+            this.userLogined = false;
+        },
+        openDashBoard: function(){
+            if(!this.userLogined) return;
+            // open
         },
         showLang: function(){
             this.setting = !this.setting;
