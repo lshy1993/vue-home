@@ -25,7 +25,7 @@
             </div>
             <div class="clearfixbox member">
                 <div class="clearfix icon128 memberhead">
-                    <img src="http://meowalienowo.github.io/img/head.jpg" />
+                    <!--img src="http://meowalienowo.github.io/img/head.jpg" /-->
                 </div>
                 <div class="clearfix memberintro">
                     <h4>死鱼眼的喵星人</h4>

@@ -36,7 +36,8 @@ export default {
     },
     methods:{
         getNewsList(){
-            this.$http.get("https://api.liantui.moe/main/news").then((response)=>{
+            var url = this.Func.GetApi("main/news");
+            this.$http.get(url).then((response)=>{
                 this.newsList = response.data;
             });
         },

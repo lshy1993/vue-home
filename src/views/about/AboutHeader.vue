@@ -22,10 +22,10 @@
             </span>
         </h1>
         <div class="labels">
-            <a alt="home" class="label" href="//liantui.xyz">
+            <a alt="home" class="label" href="//luckymiao.site">
                 <i aria-hidden="true" class="fas fa-map-marker"></i>
                 <span class="title">MIAO的小屋</span>
-                <span class="link">//liantui.xyz</span>
+                <span class="link">//luckymiao.site</span>
             </a>
         </div>
         <div class="labels">

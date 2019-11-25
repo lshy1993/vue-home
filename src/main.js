@@ -13,11 +13,12 @@ Vue.use(VueAxios,axios);
 import moment from 'vue-moment';
 Vue.use(moment);
 
-import { lq } from './language.js';
+import { lq } from './js/language.js';
 
 const i18n = new VueI18n({
-  locale: 'ja',    // 语言标识
+  //locale: 'ja',    // 语言标识
   //this.$i18n.locale // 通过切换locale的值来实现语言切换
+  locale: navigator.language.split('-')[0],
   messages: lq
 })
 
@@ -28,9 +29,9 @@ import './style/common.scss';
 import './style/transition.scss';
 
 //静态数据与方法
-import data from './data.js';
+import data from './js/data.js';
 Vue.prototype.Common = data;
-import func from './func.js';
+import func from './js/func.js';
 Vue.prototype.Func = func;
 
 //组件注册

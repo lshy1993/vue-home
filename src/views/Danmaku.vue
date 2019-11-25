@@ -45,7 +45,8 @@ export default {
     },
     methods: {
         getComments: function(){
-            this.$http.get("//api.liantui.moe/main/comment").then((response)=>{
+            var url = this.Func.GetApi('main/comment');
+            this.$http.get(url).then((response)=>{
                 this.commentList = response.data;
             });
         },

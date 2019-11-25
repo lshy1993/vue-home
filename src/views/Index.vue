@@ -14,40 +14,16 @@
     <div id="quickNavi" class="clearfixbox">
         <!--div id="infoControlPrev"><a class="prev browse"></a></div>
         <div id="infoControlNext"><a class="next browse"></a></div-->
-        <div class="naviBlock clearfixbox">
+        <div v-for="(value,index) in topBoxList" :key="index" class="naviBlock clearfixbox">
             <div class="blockBg clearfix">
-                <div class="movingBg" style="background-image:url(/static/images/still_unit_100131.png)" />
+                <div class="movingBg" :style="getImageStyle(value.backimg)" />
             </div>
             <div class="blockWrap clearfix">
-                <h2>PcrWiki</h2>
-                <p class="blockSummary">公主链接Wiki，摸鱼缓慢更新中</p>
+                <h2>{{ value.title }}</h2>
+                <p class="blockSummary">{{ value.summary }}</p>
                 <div class="line"/>
-                <div class="blockFoot">幸运的路奇</div>
-                <a href="//pcrwiki.liantui.moe" />
-            </div>
-        </div>
-        <div class="naviBlock clearfixbox">
-            <div class="blockBg clearfix">
-                <div class="movingBg" style="background-image:url(/static/images/still_unit_102031.png)" />
-            </div>
-            <div class="blockWrap clearfix">
-                <h2>恋爱与推理</h2>
-                <p class="blockSummary">校园恋爱推理AVG，绝赞咕咕咕中</p>
-                <div class="line"/>
-                <div class="blockFoot">幸运的路奇</div>
-                <a href="//pcrwiki.liantui.moe" />
-            </div>
-        </div>
-        <div class="naviBlock clearfixbox">
-            <div class="blockBg clearfix">
-                <div class="movingBg" style="background-image:url(/static/images/still_unit_107831.png)" />
-            </div>
-            <div class="blockWrap clearfix">
-                <h2>时间轮回的终点</h2>
-                <p class="blockSummary">轮回向解密AVG，绝赞咕咕咕中</p>
-                <div class="line"/>
-                <div class="blockFoot">幸运的路奇</div>
-                <a href="//pcrwiki.liantui.moe" />
+                <div class="blockFoot">{{ value.author }}</div>
+                <a :href="value.link" />
             </div>
         </div>
     </div>
@@ -76,15 +52,20 @@ export default {
     name: 'Index',
     data(){
         return {
-            newsList: []
+            newsList: [],
+            topBoxList: this.Common.topBoxList
         }
     },
     created(){
         this.getNewsList();
     },
     methods:{
+        getImageStyle(filename){
+            return "background-image:url(/static/images/"+filename+")"; 
+        },
         getNewsList(){
-            this.$http.get("//api.liantui.moe/main/news").then((response)=>{
+            var url = this.Func.GetApi("main/news");
+            this.$http.get(url).then((response)=>{
                 this.newsList = response.data;
             });
         }

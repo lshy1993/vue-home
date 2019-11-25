@@ -32,6 +32,7 @@ export default {
     methods:{
         clickBar: function clicks() {
             //console.log(this.audio.play);
+            if(!this.audio) return;
             if(this.audio.paused){
                 this.audio.play();
             }else{

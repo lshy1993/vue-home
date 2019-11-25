@@ -75,17 +75,8 @@
                         <span>导航站</span>
                     </div>
                     <div class="naviSquareBox clearfixbox">
-                        <div class="naviSquare clearfix">
-                            <a title="PcrWiki" href="https://pcrwiki.liantui.moe">PW</a>
-                        </div>
-                        <div class="naviSquare clearfix">
-                            <a title="AlphaSoul" href="https://alphasoul.liantui.moe">AS</a>
-                        </div>
-                        <div class="naviSquare clearfix">
-                            <a title="GalWiki" href="/">GW</a>
-                        </div>
-                        <div class="naviSquare clearfix">
-                            <a title="Blog" href="https://blog.liantui.moe">Blog</a>
+                        <div v-for="(value,index) in sideBoxList" :key="index" class="naviSquare clearfix">
+                            <a :title="value.hint" :href="value.link">{{ value.ch }}</a>
                         </div>
                     </div>
                 </div>
@@ -114,14 +105,14 @@
         <div class="siteFooter">
             <div class="hosting">
                 Hosted by <a href="https://www.conoha.jp/">Conoha</a>.
-                <!--span class="link">
-                    <a href="http://liantui.xyz/">liantui.xyz</a>
-                </span-->
                 <span class="link">
-                    <a href="https://liantui.moe/">liantui.moe</a>
+                    <a href="http://luckymiao.site/">luckymiao.site</a>
                 </span>
+                <!--span class="link">
+                    <a href="https://liantui.moe/">liantui.moe</a>
+                </span-->
             </div>
-            <div class="copyright">Copyright © 2012-2018 MIAO, Lucky. Illustrations have their own licenses.</div>
+            <div class="copyright">Copyright © 2012-2019 MIAO, Lucky. Illustrations have their own licenses.</div>
         </div>
     </div>
 </div>
@@ -140,7 +131,7 @@ export default {
         return {
             isRouterAlive: true,
             naviBtn: this.Common.naviTopBtn,
-            //sideJump: this.Common.sideJump,
+            sideBoxList: this.Common.sideBoxList,
             sideList: this.Common.sideList,
             sideHide: this.Common.sideHide,
             uraSite: this.Common.uraSite,
@@ -161,8 +152,9 @@ export default {
             music: {
                 title: 'secret base~君がくれたもの~',
                 artist: 'Silent Siren',
-                src: '//liantui.moe/static/audio/shuihuq.mp3',
-                pic: 'https://moeplayer.b0.upaiyun.com/aplayer/secretbase.jpg'
+                src: 'https://luckymiao.site/static/audio/secretbase.mp3',
+                //src: 'https://moeplayer.b0.upaiyun.com/aplayer/secretbase.mp3',
+                //pic: 'https://moeplayer.b0.upaiyun.com/aplayer/secretbase.jpg'
             }
         }
     },
@@ -174,6 +166,7 @@ export default {
         this.audio.addEventListener('durationchange', this.onAudioDurationChange);        
         this.audio.addEventListener('volumechange', this.onAudioVolumeChange)
         this.nextPath = this.Func.ranBG();
+
         //clearInterval(this.timer);
         //var _self = this;
         // this.timer = setInterval(()=>{
@@ -203,6 +196,7 @@ export default {
         logIn: function(){
             this.loginOn = false;
             this.userLogined = true;
+            document.body.classList = [this.loginOn?"hideScroll":""];
         },
         logOut: function(){
             this.userLogined = false;

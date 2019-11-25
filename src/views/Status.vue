@@ -29,7 +29,7 @@ import 'echarts/lib/chart/line'
 import 'echarts/lib/component/tooltip';
 import 'echarts/lib/component/title';
 
-import chartOpt from '../charts.js'
+import chartOpt from '../js/charts.js'
 import '../style/about.scss';
 
 export default {
@@ -75,8 +75,8 @@ export default {
                 this.date.shift();
             }
             this.date.push([now.getHours(), now.getMinutes(), now.getSeconds()].join(':'));
-
-            this.$http.get("https://api.liantui.moe/status/mem").then((response)=>{
+            var url1 = this.Func.GetApi("status/mem");
+            this.$http.get(url1).then((response)=>{
                 this.serverMem = response.data;
                 if(this.mems.length >= 30){
                     this.mems.shift();
@@ -84,7 +84,8 @@ export default {
                 this.mems.push(response.data.ratio);
                 this.setMemBar();
             });
-            this.$http.get("https://api.liantui.moe/status/cpus").then((response)=>{
+            var url2 = this.Func.GetApi("status/cpus");
+            this.$http.get(url2).then((response)=>{
                 let cpus = response.data;
                 for(var i = 0, len = cpus.length; i < len; i++) {
                     var cpu = cpus[i], total = 0;
